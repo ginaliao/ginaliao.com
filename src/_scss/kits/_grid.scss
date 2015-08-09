@@ -1,0 +1,27 @@
+$columns: one two three four five six seven eight nine ten eleven;
+$column-length: length($columns) + 1;
+
+.grid {
+  @include clearfix;
+  position: relative;
+
+  &.grid--forced {
+    .col { float: left; }
+    .col + .col { padding-left: $base-space; }
+
+    @each $c in $columns {
+      $i: index($columns, $c);
+      .#{$c} { width: column($i, $column-length); }
+    }
+  }
+
+  @include respond-to(600px) {
+    .col { float: left; }
+    .col + .col { padding-left: $base-space; }
+
+    @each $c in $columns {
+      $i: index($columns, $c);
+      .#{$c} { width: column($i, $column-length); }
+    }
+  }
+}

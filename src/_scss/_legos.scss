@@ -1,0 +1,174 @@
+/*--------------------------------------------------------------
+Mixins
+--------------------------------------------------------------*/
+
+/*--------
+Responsive
+--------*/
+
+@mixin respond-to($min-width, $max-width: false) {
+  @if $min-width {
+    @media screen and (min-width: $min-width) {
+      @if $max-width {
+        @media (max-width: $max-width) {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+
+    .lt-ie9 & {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $max-width) {
+      @content;
+    }
+  }
+}
+
+@mixin retina() {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+/*--------
+Typography
+--------*/
+
+@function rems($font-size) {
+  @return ($font-size / $base) * 1rem;
+}
+
+@mixin font-size($font-size, $line-height: auto) {
+  font-size: $font-size;
+  font-size: rems($font-size);
+
+  @if $line-height == auto {
+    line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+  }
+  @else {
+    @if (type-of($line-height) == number or $line-height == inherit or $line-height == normal) {
+      line-height: $line-height;
+    }
+    @elseif ($line-height != none and $line-height != false) {
+      @warn "D’oh! ‘#{$line-height}’ is not a valid value for `line-height`."
+    }
+  }
+}
+
+@mixin body-font {
+  font-family: $sans-serif;
+  font-weight: $weight-light;
+}
+
+@mixin body-bold {
+  font-family: $display-stack; 
+  font-weight: normal;
+}
+
+/*----
+Layout
+----*/
+
+@mixin clearfix {
+  & {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/*--------------------------------------------------------------
+Functions
+--------------------------------------------------------------*/
+
+@function column($num, $grid-columns) {
+  $column: percentage(1 / $grid-columns);
+
+  @if ($num == 1) {
+    @return $column;
+  }
+
+  @return $column * $num;
+}
+
+/*--------------------------------------------------------------
+Placeholders
+--------------------------------------------------------------*/
+
+%remove-select-default {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+}
+
+%visually-hidden { /*http://developer.yahoo.com/blogs/ydn/posts/2012/10/clip-your-hidden-content-for-better-accessibility/*/
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+Reduce, reuse, recycle
+--------------------------------------------------------------*/
+
+.nobr,
+.nowrap {
+  white-space: nowrap;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.loading-ellipsis:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -moz-animation: ellipsis 1s steps(3, end) infinite;
+  -webkit-animation: ellipsis 1s steps(3, end) infinite;
+  -o-animation: ellipsis 1s steps(3, end) infinite;
+  animation: ellipsis 1s steps(3, end) infinite;
+  content: '\2026';
+}
+
+@keyframes ellipsis {
+  from { width: 0.27em; }
+  to { width: 1em; }
+}
+
+.is-hidden { display: none; }
+
+.is-mobile-hidden {
+  @include respond-to(false, 599px) {
+    display: none;
+  }
+}
+
+.is-desktop-hidden {
+  @include respond-to(600px) {
+    display: none;
+  }
+}

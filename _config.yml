@@ -1,0 +1,14 @@
+# Site settings
+title: I'm Gina Liao
+email: gina@ginaliao.com
+description: > # this means to ignore newlines until "baseurl:"
+  A self-taught front-end developer with a fancy degree in graphic design.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.ginaliao.com" # the base hostname & protocol for your site
+twitter_username: itsginarrr
+github_username:  ginaliao
+source: ./src
+destination: ./dist
+
+# Build settings
+markdown: kramdown

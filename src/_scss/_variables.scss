@@ -1,0 +1,35 @@
+/*--------------------------------------------------------------
+Variables
+--------------------------------------------------------------*/
+
+$max-width: 960px;
+$base-space: 1em;
+$base-line-height: 24px;
+
+$sans-serif: 'Trebuchet MS', 'Verdana', sans-serif;
+$display-stack: 'Trebuchet MS', 'Verdana', sans-serif;
+
+/* Weights */
+$weight-light: 300;
+$weight-medium: 500;
+$weight-bold: 800;
+
+/* Sizes */
+$small: 9.889px;
+$base: 16px;
+$medium: 25.888px;
+$large: 41.887px;
+$xlarge: 67.773px;
+$xxlarge: 109.656px;
+
+/*--------------------------------------------------------------
+Colours
+--------------------------------------------------------------*/
+
+$red: red;
+$green: green;
+$blue: blue;
+$black: black;
+
+$warning: $red;
+$success: $green;
