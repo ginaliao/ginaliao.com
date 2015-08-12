@@ -149,8 +149,8 @@ module.exports = function(grunt) {
 		// Watches files for changes
 		watch: {
 			content: {
-				files: ['src/**/*.html', 'src/_includes/*.html', 'src/_layouts/*.html', 'src/_posts/*.html', 'src/img/*'],
-				tasks: ['shell:jekyllBuild']
+				files: ['src/**/*.{html,md}', 'src/_includes/*.html', 'src/_layouts/*.html', 'src/_posts/*.html', 'src/img/*'],
+				tasks: ['shell:jekyllBuild', 'sass', 'autoprefixer']
 			},
 			scripts: {
 				files: 'src/js/**/*.js',
