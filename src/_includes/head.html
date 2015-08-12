@@ -7,7 +7,7 @@
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
   <!-- build:css /css/style.css -->
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
 	<!-- endbuild -->
 
 	<!--[if (lt IE 9) & (!IEMobile)]>
