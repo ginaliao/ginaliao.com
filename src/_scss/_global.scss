@@ -25,11 +25,14 @@
 ========================================================================== */
 
 html {
-  background: #fff;
+  background: $concrete;
   box-sizing: border-box;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  @include respond-to(600px) {
+    font-size: 125%;
+  }
 }
 
 html,
@@ -37,13 +40,16 @@ button,
 input,
 select,
 textarea {
-  @include body-font;
-  color: $black;
+  @include base-copy;
+  color: $ebony;
 }
 
 body {
   margin: 0;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 ::-moz-selection {
@@ -71,8 +77,9 @@ hr {
 ========================================================================== */
 
 a {
-  color: $black;
-  text-decoration: underline;
+  color: $red;
+  border-bottom: 1px solid rgba($ebony, 0.2);
+  text-decoration: none;
 }
 
 a:focus {
@@ -82,8 +89,7 @@ a:focus {
 a:active,
 a:hover {
   outline: 0;
-  border: none;
-  text-decoration: none;
+  color: $ebony;
 }
 
 /* Typography
@@ -93,39 +99,16 @@ h1, h2, h3,
 h4, h5, h6,
 .h1, .h2, .h3,
 .h4, .h5, .h6 {
-  @include body-bold;
-  color: $black;
+  @include heading-copy;
+  margin: 0;
 }
 
-h1, .h1 {
-  @include font-size($xxlarge);
-  margin: 1.34em 0 0.67em 0;
-}
-
-h2, .h2 {
-  @include font-size($xlarge);
-  margin: 1.66em 0 0.83em 0;
-}
-
-h3, .h3 {
-  @include font-size($large);
-  margin: 2em 0 1em 0;
-}
-
-h4, .h4 {
-  @include font-size($medium);
-  margin: 2.66em 0 1.33em 0;
-}
-
-h5, .h5 {
-  @include font-size($base);
-  margin: 3.34em 0 1.67em 0;
-}
-
-h6, .h6 {
-  @include font-size($base);
-  margin: 2.33em 0;
-}
+h1, .h1 { @include typeset('xlarge'); }
+h2, .h2 { @include typeset('large'); }
+h3, .h3 { @include typeset('base'); text-transform: uppercase; }
+h4, .h4 { @include typeset('base'); }
+h5, .h5 { @include typeset('small'); text-transform: uppercase; }
+h6, .h6 { @include typeset('small'); }
 
 abbr[title] {
   border-bottom: 1px dotted;
@@ -133,25 +116,26 @@ abbr[title] {
 
 b,
 strong {
-  @include body-bold;
+  font-weight: $weight-medium;
 }
 
 blockquote {
-  margin: 1em 40px;
+  @include vertical-rhythm('margin', 1 2);
 }
 
 p {
-  @include font-size($base, 1.5);
-  margin: 0.75em 0;
+  @include typeset('base');
+  @include vertical-rhythm('margin', 0 0 1 0);
 }
 
 small {
-  @include font-size($small);
+  @include typeset('small');
 }
 
 sub,
 sup {
-  @include font-size($small, 0);
+  @include typeset('small');
+  line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
@@ -172,7 +156,7 @@ menu,
 ol,
 ul {
   @include clearfix;
-  margin: 1em 0;
+  @include vertical-rhythm('margin', 1 0);
 }
 
 dd {
@@ -182,12 +166,12 @@ dd {
 
 menu,
 ul {
-  padding: 0 0 0 1.5em;
+  @include vertical-rhythm('padding-left', 1);
 }
 
 ol {
-  padding: 0 0 0 1.5em;
-  ol { padding: 0 0 0 1.5em; }
+  @include vertical-rhythm('padding-left', 1);
+  ol { @include vertical-rhythm('padding-left', 1); }
 }
 
 nav ul,

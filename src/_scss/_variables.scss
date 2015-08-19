@@ -2,34 +2,72 @@
 Variables
 --------------------------------------------------------------*/
 
-$max-width: 960px;
-$base-space: 1em;
-$base-line-height: 24px;
+$max-width: 800px;
+$baseline: 32px;
+$baseline-small: 22px;
+$baseline-large: 32px;
 
-$sans-serif: 'Trebuchet MS', 'Verdana', sans-serif;
-$display-stack: 'Trebuchet MS', 'Verdana', sans-serif;
+$base-small: 16px;
+$base-large: 20px;
+
+$sans-serif: 'Lato', 'Helvetica', 'Arial', 'Verdana', sans-serif;
+$serif: Georgia, serif;
 
 /* Weights */
-$weight-light: 300;
-$weight-medium: 500;
-$weight-bold: 800;
+$weight-light: 400;
+$weight-medium: 700;
+$weight-bold: 900;
 
 /* Sizes */
-$small: 9.889px;
-$base: 16px;
-$medium: 25.888px;
-$large: 41.887px;
-$xlarge: 67.773px;
-$xxlarge: 109.656px;
+$xsmall: 13px;
+$small: 16px;
+$base: 20px;
+$medium: 24px;
+$large: 32px;
+$xlarge: 64px;
+
+$breakpoints: (
+	'small': 320px,
+	'large': 768px
+);
+
+$typography: (
+	'small': (
+		'small': ( font-size: $xsmall, line-height: 1.538461538 ),
+		'large': ( font-size: $small, line-height: 1.625 )
+	),
+	'base': (
+		'small': ( font-size: $small, line-height: 1.375 ),
+		'large': ( font-size: $base, line-height: 1.6 )
+	),
+	'medium': (
+		'small': ( font-size: $small, line-height: 1.375 ),
+		'large': ( font-size: $medium, line-height: 1.5 )
+	),
+	'large': (
+		'small': ( font-size: $base, line-height: 1.4 ),
+		'large': ( font-size: $large, line-height: 1.25 )
+	),
+	'xlarge': (
+		'small': ( font-size: $large, line-height: 1.25 ),
+		'large': ( font-size: $xlarge, line-height: 1.125 )
+	),
+);
+
 
 /*--------------------------------------------------------------
 Colours
 --------------------------------------------------------------*/
 
-$red: red;
+$red: #E93237;
 $green: green;
-$blue: blue;
 $black: black;
+
+$cabaret: #D64254;
+$cerulean: #00B4CD;
+$concrete: #F2F2F2;
+$ebony: #243040;
+$ebony-light: scale-color($ebony, $lightness: 45%);
 
 $warning: $red;
 $success: $green;

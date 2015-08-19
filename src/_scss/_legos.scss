@@ -6,7 +6,7 @@ Mixins
 Responsive
 --------*/
 
-@mixin respond-to($min-width, $max-width: false) {
+@mixin respond-to($min-width, $max-width: false, $ie: true) {
   @if $min-width {
     @media screen and (min-width: $min-width) {
       @if $max-width {
@@ -18,8 +18,10 @@ Responsive
       }
     }
 
-    .lt-ie9 & {
-      @content;
+    @if $ie {
+      .lt-ie9 & {
+        @content;
+      }
     }
   } @else {
     @media screen and (max-width: $max-width) {
@@ -34,39 +36,166 @@ Responsive
   }
 }
 
+// http://davidensinger.com/2013/03/using-rems-with-sass/
+
+@mixin rem($property, $values) {
+  $px-values: ();
+  $rem-values: ();
+
+  @each $value in $values {
+    @if $value == 0 or $value == 0px {
+      $px-values: join($px-values, 0);
+      $rem-values: join($rem-values, 0);
+    } @else if type-of($value) == number and not unitless($value) and (unit($value) == px) {
+      $new-rem-value: $value / $base;
+      $px-values: join($px-values, round($value));
+      $rem-values: join($rem-values, #{$new-rem-value}rem);
+    } @else if type-of($value) == number and not unitless($value) and (unit($value) == "%") {
+      $px-values: join($px-values, #{$value});
+      $rem-values: join($rem-values, #{$value});
+    } @else if $value == auto {
+      $px-values: join($px-values, auto);
+      $rem-values: join($rem-values, auto);
+    } @else {
+      $px-values: join($px-values, round($value * $base));
+      $rem-values: join($rem-values, #{$value}rem);
+    }
+  }
+
+  #{$property}: $px-values;
+  #{$property}: $rem-values;
+}
+
 /*--------
 Typography
 --------*/
 
-@function rems($font-size) {
-  @return ($font-size / $base) * 1rem;
+@function ems($size, $context: $base) {
+  @return ($size / $context) * 1em;
 }
 
-@mixin font-size($font-size, $line-height: auto) {
-  font-size: $font-size;
-  font-size: rems($font-size);
+@function rems($size, $context: $base) {
+  @return ($size / $context) * 1rem;
+}
 
-  @if $line-height == auto {
-    line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+// http://maketea.co.uk/2014/11/05/managing-responsive-typography-with-sass.html
+
+@function breakpoint($breakpoint-name) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint-name);
+
+  @if $breakpoint-value {
+    @return $breakpoint-value;
   }
-  @else {
-    @if (type-of($line-height) == number or $line-height == inherit or $line-height == normal) {
-      line-height: $line-height;
-    }
-    @elseif ($line-height != none and $line-height != false) {
-      @warn "D’oh! ‘#{$line-height}’ is not a valid value for `line-height`."
+
+  @warn "Breakpoint '#{$breakpoint-name}' not found in $breakpoints";
+}
+
+@function text-breakpoints-for($text-size) {
+  $text-breakpoints: map-get($typography, $text-size);
+
+  @if $text-breakpoints {
+    @return $text-breakpoints;
+  }
+
+  @warn "Text size '#{$text-size}' not found in $typography";
+}
+
+@function text-properties-for($text-size, $breakpoint-name) {
+  $text-breakpoints: text-breakpoints-for($text-size);
+  $text-properties: map-get($text-breakpoints, $breakpoint-name);
+
+  @if $text-properties {
+    @return $text-properties;
+  }
+
+  @warn "Breakpoint '#{$breakpoint-name}' for text size '#{$text-size}' was not found";
+}
+
+@function get-base-settings($breakpoint, $property) {
+  $base-breakpoints: text-breakpoints-for('base');
+  $breakpoint: map-get($base-breakpoints, $breakpoint);
+  $base-size: map-get($breakpoint, $property);
+
+  @if $base-size {
+    @return $base-size;
+  }
+
+  @warn "Base size for breakpoint '#{$breakpoint}' was not found";
+}
+
+@mixin text-size($text-size, $breakpoint-name: 'small') {
+  $text-size-properties: text-properties-for($text-size, $breakpoint-name);
+  $baseline: get-base-settings($breakpoint-name, 'font-size');
+
+  @if $text-size-properties {
+    font-size: ems(map-get($text-size-properties, 'font-size'), $baseline);
+    line-height: map-get($text-size-properties, 'line-height');
+  }
+}
+
+@mixin typeset($text-size, $default-breakpoint: 'small') {
+  @include text-size($text-size, $default-breakpoint);
+
+  $text-breakpoints-map: text-breakpoints-for($text-size);
+  $text-breakpoints-keys: map-keys($text-breakpoints-map);
+
+  @each $breakpoint-name in $text-breakpoints-keys {
+    @if $breakpoint-name != $default-breakpoint {
+      $breakpoint: breakpoint($breakpoint-name);
+      @include respond-to($breakpoint) {
+        @include text-size($text-size, $breakpoint-name);
+      }
     }
   }
 }
 
-@mixin body-font {
-  font-family: $sans-serif;
+@mixin get-vertical-rhythm($property, $values, $breakpoint-name) {
+  $px-values: ();
+  $rem-values: ();
+
+  $base-size: get-base-settings($breakpoint-name, 'font-size');
+  $baseline: get-base-settings($breakpoint-name, 'line-height');
+
+  @each $value in $values {
+    @if $value == 0 or $value == 0px {
+      $px-values: join($px-values, 0);
+      $rem-values: join($rem-values, 0);
+    } @else {
+      $new-rem-value: $value * $baseline;
+      $px-values: join($px-values, round($base-size * $baseline * $value));
+      $rem-values: join($rem-values, #{$new-rem-value}rem);
+    }
+  }
+
+  #{$property}: $px-values;
+  #{$property}: $rem-values;
+}
+
+@mixin vertical-rhythm($property, $values, $default-breakpoint: 'small') {
+  $breakpoint-map: map-keys($breakpoints);
+
+  @each $breakpoint-name in $breakpoint-map {
+    $breakpoint: breakpoint($breakpoint-name);
+
+    @if $breakpoint-name == $default-breakpoint {
+      @include get-vertical-rhythm($property, $values, $breakpoint-name);
+    } @else {
+      @include respond-to($breakpoint, $ie: false) {
+        @include get-vertical-rhythm($property, $values, $breakpoint-name);
+      }
+      
+    }
+  }
+}
+
+@mixin base-copy {
+  font-family: $serif;
   font-weight: $weight-light;
 }
 
-@mixin body-bold {
-  font-family: $display-stack; 
-  font-weight: normal;
+@mixin heading-copy {
+  font-family: $sans-serif; 
+  font-weight: $weight-medium;
 }
 
 /*----
@@ -118,46 +247,25 @@ Placeholders
 }
 
 %visually-hidden { /*http://developer.yahoo.com/blogs/ydn/posts/2012/10/clip-your-hidden-content-for-better-accessibility/*/
-    position: absolute !important;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    padding:0 !important;
-    border:0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 
-/*--------------------------------------------------------------
-Reduce, reuse, recycle
---------------------------------------------------------------*/
-
-.nobr,
-.nowrap {
-  white-space: nowrap;
-}
-
-.truncate {
+%truncate {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.loading-ellipsis:after {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-  -moz-animation: ellipsis 1s steps(3, end) infinite;
-  -webkit-animation: ellipsis 1s steps(3, end) infinite;
-  -o-animation: ellipsis 1s steps(3, end) infinite;
-  animation: ellipsis 1s steps(3, end) infinite;
-  content: '\2026';
-}
-
-@keyframes ellipsis {
-  from { width: 0.27em; }
-  to { width: 1em; }
-}
+/*--------------------------------------------------------------
+Reduce, reuse, recycle
+--------------------------------------------------------------*/
 
 .is-hidden { display: none; }
 
