@@ -153,22 +153,24 @@ Typography
   $px-values: ();
   $rem-values: ();
 
-  $base-size: get-base-settings($breakpoint-name, 'font-size');
-  $baseline: get-base-settings($breakpoint-name, 'line-height');
+  @if map-has-key(text-breakpoints-for('base'), $breakpoint-name) {
+    $base-size: get-base-settings($breakpoint-name, 'font-size');
+    $baseline: get-base-settings($breakpoint-name, 'line-height');
 
-  @each $value in $values {
-    @if $value == 0 or $value == 0px {
-      $px-values: join($px-values, 0);
-      $rem-values: join($rem-values, 0);
-    } @else {
-      $new-rem-value: $value * $baseline;
-      $px-values: join($px-values, round($base-size * $baseline * $value));
-      $rem-values: join($rem-values, #{$new-rem-value}rem);
+    @each $value in $values {
+      @if $value == 0 or $value == 0px {
+        $px-values: join($px-values, 0);
+        $rem-values: join($rem-values, 0);
+      } @else {
+        $new-rem-value: $value * $baseline;
+        $px-values: join($px-values, round($base-size * $baseline * $value));
+        $rem-values: join($rem-values, #{$new-rem-value}rem);
+      }
     }
-  }
 
-  #{$property}: $px-values;
-  #{$property}: $rem-values;
+    #{$property}: $px-values;
+    #{$property}: $rem-values;
+  }
 }
 
 @mixin vertical-rhythm($property, $values, $default-breakpoint: 'small') {
