@@ -16,7 +16,7 @@ $gutter: 10px;
     }
   }
 
-  @include respond-to(600px) {
+  @include respond-to('base') {
     .col { float: left; }
     .col + .col { padding-left: $gutter; }
 

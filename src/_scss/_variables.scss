@@ -3,12 +3,6 @@ Variables
 --------------------------------------------------------------*/
 
 $max-width: 800px;
-$baseline: 32px;
-$baseline-small: 22px;
-$baseline-large: 32px;
-
-$base-small: 16px;
-$base-large: 20px;
 
 $sans-serif: 'Lato', 'Helvetica', 'Arial', 'Verdana', sans-serif;
 $serif: Georgia, serif;
@@ -28,29 +22,31 @@ $xlarge: 64px;
 
 $breakpoints: (
 	'small': 320px,
-	'large': 768px
+	'base': 480px,
+	'medium': 768px,
+	'large': 1024px
 );
 
 $typography: (
 	'small': (
 		'small': ( font-size: $xsmall, line-height: 1.538461538 ),
-		'large': ( font-size: $small, line-height: 1.625 )
+		'medium': ( font-size: $small, line-height: 1.625 )
 	),
 	'base': (
 		'small': ( font-size: $small, line-height: 1.375 ),
-		'large': ( font-size: $base, line-height: 1.6 )
+		'medium': ( font-size: $base, line-height: 1.6 )
 	),
 	'medium': (
 		'small': ( font-size: $small, line-height: 1.375 ),
-		'large': ( font-size: $medium, line-height: 1.5 )
+		'medium': ( font-size: $medium, line-height: 1.5 )
 	),
 	'large': (
 		'small': ( font-size: $base, line-height: 1.4 ),
-		'large': ( font-size: $large, line-height: 1.25 )
+		'medium': ( font-size: $large, line-height: 1.25 )
 	),
 	'xlarge': (
 		'small': ( font-size: $large, line-height: 1.25 ),
-		'large': ( font-size: $xlarge, line-height: 1.125 )
+		'medium': ( font-size: $xlarge, line-height: 1.125 )
 	),
 );
 
@@ -61,7 +57,6 @@ Colours
 
 $red: #E93237;
 $green: green;
-$black: black;
 
 $cabaret: #D64254;
 $cerulean: #00B4CD;
