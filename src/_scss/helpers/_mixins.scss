@@ -1,0 +1,140 @@
+/*--------------------------------------------------------------
+Responsive
+--------------------------------------------------------------*/
+
+@mixin respond-to($min-width, $max-width: false, $ie: true) {
+  @if $min-width {
+    @if map-has-key($breakpoints, $min-width) {
+      $min-width: map-get($breakpoints, $min-width);
+    }
+
+    @media screen and (min-width: #{$min-width}) {
+      @if $max-width {
+        @media (max-width: $max-width) {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+
+    @if $ie {
+      .lt-ie9 & {
+        @content;
+      }
+    }
+  } @else {
+    @if map-has-key($breakpoints, $max-width) {
+      $max-width: map-get($breakpoints, $max-width);
+    }
+
+    @media screen and (max-width: #{$max-width}) {
+      @content;
+    }
+  }
+}
+
+@mixin retina() {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+/*--------------------------------------------------------------
+Typography
+--------------------------------------------------------------*/
+
+@mixin text-size($text-size, $breakpoint-name: 'default') {
+  $text-size-properties: text-properties-for($text-size, $breakpoint-name);
+  $baseline: get-base-setting($breakpoint-name, 'font-size');
+
+  @if $text-size-properties {
+    font-size: ems(map-get($text-size-properties, 'font-size'), $baseline);
+    line-height: map-get($text-size-properties, 'line-height');
+  }
+}
+
+@mixin typeset($text-size, $default-breakpoint: 'default') {
+  @include text-size($text-size, $default-breakpoint);
+
+  $text-breakpoints-map: text-breakpoints-for($text-size);
+  $text-breakpoints-keys: map-keys($text-breakpoints-map);
+
+  @each $breakpoint-name in $text-breakpoints-keys {
+    @if $breakpoint-name != $default-breakpoint {
+      $breakpoint: breakpoint($breakpoint-name);
+      @include respond-to($breakpoint) {
+        @include text-size($text-size, $breakpoint-name);
+      }
+    }
+  }
+}
+
+@mixin get-vertical-rhythm($property, $values, $breakpoint-name) {
+  $px-values: ();
+  $rem-values: ();
+
+  @if map-has-key(text-breakpoints-for('base'), $breakpoint-name) {
+    $base-size: get-base-setting($breakpoint-name, 'font-size');
+    $baseline: get-base-setting($breakpoint-name, 'line-height');
+
+    @each $value in $values {
+      @if $value == 0 or $value == 0px {
+        $px-values: join($px-values, 0);
+        $rem-values: join($rem-values, 0);
+      } @else {
+        $new-rem-value: $value * $baseline;
+        $px-values: join($px-values, round($base-size * $baseline * $value));
+        $rem-values: join($rem-values, #{$new-rem-value}rem);
+      }
+    }
+
+    #{$property}: $px-values;
+    #{$property}: $rem-values;
+  }
+}
+
+@mixin vertical-rhythm($property, $values, $default-breakpoint: 'default') {
+  $breakpoint-map: map-keys($breakpoints);
+
+  @each $breakpoint-name in $breakpoint-map {
+    $breakpoint: breakpoint($breakpoint-name);
+
+    @if $breakpoint-name == $default-breakpoint {
+      @include get-vertical-rhythm($property, $values, $breakpoint-name);
+    } @else {
+      @include respond-to($breakpoint, $ie: false) {
+        @include get-vertical-rhythm($property, $values, $breakpoint-name);
+      }
+      
+    }
+  }
+}
+
+@mixin base-copy {
+  font-family: $serif;
+  font-weight: $weight-light;
+}
+
+@mixin heading-copy {
+  font-family: $sans-serif; 
+  font-weight: $weight-medium;
+}
+
+/*--------------------------------------------------------------
+Layout
+--------------------------------------------------------------*/
+
+@mixin clearfix {
+  & {
+    *zoom: 1;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

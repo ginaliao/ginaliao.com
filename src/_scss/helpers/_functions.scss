@@ -1,0 +1,69 @@
+/*--------------------------------------------------------------
+Typography
+--------------------------------------------------------------*/
+
+@function ems($size, $context: $base) {
+  @return ($size / $context) * 1em;
+}
+
+@function rems($size, $context: $base) {
+  @return ($size / $context) * 1rem;
+}
+
+// http://maketea.co.uk/2014/11/05/managing-responsive-typography-with-sass.html
+
+@function breakpoint($breakpoint-name) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint-name);
+
+  @if $breakpoint-value {
+    @return $breakpoint-value;
+  }
+
+  @warn "Breakpoint '#{$breakpoint-name}' not found in $breakpoints";
+}
+
+@function text-breakpoints-for($text-size) {
+  $text-breakpoints: map-get($typography, $text-size);
+
+  @if $text-breakpoints {
+    @return $text-breakpoints;
+  }
+
+  @warn "Text size '#{$text-size}' not found in $typography";
+}
+
+@function text-properties-for($text-size, $breakpoint-name) {
+  $text-breakpoints: text-breakpoints-for($text-size);
+  $text-properties: map-get($text-breakpoints, $breakpoint-name);
+
+  @if $text-properties {
+    @return $text-properties;
+  }
+
+  @warn "Breakpoint '#{$breakpoint-name}' for text size '#{$text-size}' was not found";
+}
+
+@function get-base-setting($breakpoint, $property) {
+  $breakpoint-name: text-properties-for('base', $breakpoint);
+  $base-size: map-get($breakpoint-name, $property);
+
+  @if $base-size {
+    @return $base-size;
+  }
+
+  @warn "Base size for breakpoint '#{$breakpoint}' was not found";
+}
+
+/*--------------------------------------------------------------
+Layout
+--------------------------------------------------------------*/
+
+@function column($num, $grid-columns) {
+  $column: percentage(1 / $grid-columns);
+
+  @if ($num == 1) {
+    @return $column;
+  }
+
+  @return $column * $num;
+}

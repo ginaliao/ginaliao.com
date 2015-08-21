@@ -1,12 +1,14 @@
 /*  ==========================================================================
-  Settings - Global variables
+  Settings - Global variables and helpers
   ========================================================================== */
 
-  @import 'variables';
-  @import 'legos';    /* Reusable chunks, variables and mixins */
+  @import 'helpers/variables';
+  @import 'helpers/functions';
+  @import 'helpers/mixins';
+  @import 'helpers/placeholders';
 
 /*  ==========================================================================
-  Kits - Reusable kits, don't edit. Add more as we think of them
+  Kits - Reusable bits
   ========================================================================== */
   
   @import 'kits/grid';
