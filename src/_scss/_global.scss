@@ -73,11 +73,16 @@ hr {
   box-sizing: content-box;
 }
 
+pre {
+  @include vertical-rhythm('padding', 0.5);
+  tab-size: 2;
+}
+
 /* Links
 ========================================================================== */
 
 a {
-  color: $red;
+  color: $cabaret;
   border-bottom: 1px solid rgba($ebony, 0.2);
   text-decoration: none;
 }

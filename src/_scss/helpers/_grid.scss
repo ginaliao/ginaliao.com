@@ -5,10 +5,13 @@ $gutter: 10px;
 .grid {
   @include clearfix;
   position: relative;
+  margin-left: -($gutter);
 
   &.grid--forced {
-    .col { float: left; }
-    .col + .col { padding-left: $gutter; }
+    .col {
+      float: left;
+      padding-left: $gutter;
+    }
 
     @each $c in $columns {
       $i: index($columns, $c);
@@ -17,8 +20,10 @@ $gutter: 10px;
   }
 
   @include respond-to('base') {
-    .col { float: left; }
-    .col + .col { padding-left: $gutter; }
+    .col {
+      float: left;
+      padding-left: $gutter;
+    }
 
     @each $c in $columns {
       $i: index($columns, $c);

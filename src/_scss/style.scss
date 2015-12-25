@@ -6,36 +6,33 @@
   @import 'helpers/functions';
   @import 'helpers/mixins';
   @import 'helpers/placeholders';
-
-/*  ==========================================================================
-  Kits - Reusable bits
-  ========================================================================== */
-  
-  @import 'kits/grid';
-  @import 'kits/forms';
-  @import 'kits/utilities';
+  @import 'helpers/utilities';
+  @import 'helpers/grid';
 
 /*  ==========================================================================
   Imports - Global project-use
   ========================================================================== */
 
-  @import 'global';   /* Styling of HTML elements and core typography */
-  @import 'layout';   /* Only for structural elements, widths, floats of main containers */
-  @import 'print';    /* Print stylesheet, be nice! */
+  @import 'global';
+  @import 'print';
 
 /*  ==========================================================================
   Vendor - 3rd party CSS (for plugins etc.)
   ========================================================================== */
 
-  @import 'modules/prism';
+  @import 'vendor/base16-ocean-dark';
 
 /*  ==========================================================================
   Modules - Unique to project
   ========================================================================== */
 
-  @import 'modules/typography';
-  // @import 'modules/header';
-  // @import 'modules/footer';
+  @import 'modules/forms';
+  @import 'modules/layout'; 
+  @import 'modules/post';
+  @import 'modules/page';
+  @import 'modules/header';
+  @import 'modules/content';
+  @import 'modules/footer';
   // @import 'modules/display';
   // @import 'modules/navigation';
   // @import 'modules/pullout';

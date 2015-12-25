@@ -1,0 +1,4 @@
+.site-content {
+	flex: 1;
+	@include vertical-rhythm('padding', 1 0);
+}
