@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 		browserSync: {
 			dev: {
 				bsFiles: {
-					src: ['dist/css/*.css', 'dist/{,*/}*.html']
+					src: ['dist/**/*']
 				},
 				options: {
 					watchTask: true,
@@ -33,6 +33,16 @@ module.exports = function(grunt) {
 			all: ['dist'],
 			icons: ['src/img/icons/*', '!src/img/icons/compressed/**', '!src/img/icons/raw/**']
 		},
+    // Copies files
+    copy: {
+      js: {
+        expand: true,
+        cwd: 'src/js/',
+        src: '**',
+        dest: 'dist/js/'
+        
+      }
+    },
 		// Minifies CSS
 		cssmin: {
 			options: {
@@ -89,14 +99,12 @@ module.exports = function(grunt) {
 		sass: {
 			dev: {
 				options: {
-					style: 'expanded',
-					sourcemap: 'none'
+					outputStyle: 'expanded',
+					sourceMap: false
 				},
-				expand: true,
-				flatten: true,
-				ext: '.css',
-				src: 'src/_scss/*.scss',
-				dest: 'dist/css/'
+				files: {
+					'dist/css/style.css': 'src/_scss/style.scss'
+				}
 			}
 		},
 		// Run Jekyll build
@@ -154,7 +162,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: 'src/js/**/*.js',
-				tasks: ['newer:jshint', 'shell:jekyllBuild']
+				tasks: ['newer:jshint', 'copy:js']
 			},
 			stylesheets: {
 				files: 'src/_scss/**/*.scss',
@@ -163,7 +171,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('default', ['build', 'browserSync', 'watch']);
+	grunt.registerTask('default', ['build', 'imageoptim', 'browserSync', 'watch']);
 	grunt.registerTask('build', ['clean:icons', 'shell:jekyllBuild', 'sass', 'autoprefixer']);
-	grunt.registerTask('dist', ['build', 'imageoptim', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin']);
+	grunt.registerTask('dist', ['build', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin']);
 };

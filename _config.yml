@@ -9,6 +9,12 @@ twitter_username: itsginarrr
 github_username:  ginaliao
 source: ./src
 destination: ./dist
+paginate: 10
+permalink: /blog/:title/
 
 # Build settings
+gems: [jekyll-paginate]
 markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: false
