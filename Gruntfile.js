@@ -28,17 +28,18 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		// Removes folders/files
-		clean: {
-			all: ['dist'],
-			icons: ['src/img/icons/*', '!src/img/icons/compressed/**', '!src/img/icons/raw/**']
-		},
     // Copies files
     copy: {
+      images: {
+        expand: true,
+        cwd: 'src/img/',
+        src: '**/*',
+        dest: 'dist/img/'
+      },
       js: {
         expand: true,
         cwd: 'src/js/',
-        src: '**',
+        src: '**/*',
         dest: 'dist/js/'
         
       }
@@ -58,9 +59,29 @@ module.exports = function(grunt) {
         ]
       }
     },
+    // Create fallbacks for SVG icons
+    grunticon: {
+      options: {
+        enhanceSVG: true
+      },
+      icons: {
+        files: [{
+          expand: true,
+          cwd: 'src/img/icons/compressed',
+          src: '*.svg',
+          dest: 'src/img/icons'
+        }],
+        options: {
+          cssprefix: '.icon--',
+          pngpath: '../img/icons/png'
+        }
+      }
+    },
 		// Optimises images
 		imageoptim: {
-			options: { quitAfter: true },
+			options: {
+        quitAfter: true
+      },
 			jpgs: {
 				options: {
 					jpegMini: false,
@@ -122,9 +143,9 @@ module.exports = function(grunt) {
 				]
 			},
 			dist: {
-				expand: true,
-				cwd: 'src/img/icons/raw',
-				src: ['*.svg'],
+        expand: true,
+        cwd: 'src/img/icons/raw',
+				src: '*.svg',
 				dest: 'src/img/icons/compressed'
 			}
 		},
@@ -156,8 +177,16 @@ module.exports = function(grunt) {
     },
 		// Watches files for changes
 		watch: {
+      images: {
+        files: ['src/img/*', '!src/img/icons/**/*'],
+        tasks: ['imageoptim', 'copy:images']
+      },
+      icons: {
+        files: ['src/img/icons/**/*'],
+        tasks: ['svgmin', 'grunticon', 'copy:images']
+      },
 			content: {
-				files: ['src/**/*.{html,md}', 'src/_includes/*.html', 'src/_layouts/*.html', 'src/_posts/*.html', 'src/img/*'],
+				files: ['src/**/*.{html,md}', 'src/_includes/*.html', 'src/_layouts/*.html', 'src/_posts/*.html'],
 				tasks: ['shell:jekyllBuild', 'sass', 'autoprefixer']
 			},
 			scripts: {
@@ -172,6 +201,6 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['build', 'imageoptim', 'browserSync', 'watch']);
-	grunt.registerTask('build', ['clean:icons', 'shell:jekyllBuild', 'sass', 'autoprefixer']);
+	grunt.registerTask('build', ['svgmin', 'grunticon', 'shell:jekyllBuild', 'sass', 'autoprefixer']);
 	grunt.registerTask('dist', ['build', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin']);
 };
