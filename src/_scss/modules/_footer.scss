@@ -63,7 +63,7 @@
   @include respond-to('small') {
     float: right;
     width: 40%;
-    perspective: 2500px;
+    perspective: 3000px;
   }
   @include respond-to('large') {
     &:hover {
