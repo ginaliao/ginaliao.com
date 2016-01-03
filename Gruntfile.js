@@ -110,6 +110,7 @@ module.exports = function(grunt) {
 		// Tests JavaScript code quality
 		jshint: {
 			options: {
+        newcap: false,
 				reporter: require('jshint-stylish')
 			},
 			dev: {
@@ -138,8 +139,10 @@ module.exports = function(grunt) {
 		svgmin: {
 			options: {
 				plugins: [
-					{ removeViewBox: false },
-					{ removeUselessStrokeAndFill: false }
+          { convertPathData: false },
+          { cleanupIDs: false },
+          { removeViewBox: false },
+          { removeUselessStrokeAndFill: false } 
 				]
 			},
 			dist: {
