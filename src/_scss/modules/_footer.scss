@@ -22,10 +22,13 @@
 }
 
 .footer-secondary {
-  @include vertical-rhythm('padding', 1 0 1 1);
+  @include vertical-rhythm('padding', 1);
   @include typeset('small');
   background-color: $bunker;
   color: $fiord;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .social-list {
@@ -34,14 +37,14 @@
 
 .social-item {
   display: inline-block;
+  + .social-item {
+    margin-left: 0.5em;
+  }
 }
 
 .social-link {
   display: block;
-}
-
-.social-link-title {
-
+  border: none;
 }
 
 .fold-front {
