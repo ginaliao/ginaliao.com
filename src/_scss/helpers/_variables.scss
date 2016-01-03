@@ -54,7 +54,8 @@ $breakpoints: (
 	'default': 320px,
 	'small': 480px,
 	'medium': 768px,
-	'large': 1024px
+	'large': 1024px,
+	'xlarge': 1200px
 );
 
 /*--------------------------------------------------------------
@@ -67,8 +68,9 @@ $green: green;
 $cabaret: #D64254;
 $cerulean: #00B4CD;
 $concrete: #F2F2F2;
+$fiord: #3F4D5F;
 $ebony: #243040;
-$ebony-light: scale-color($ebony, $lightness: 45%);
+$bunker: #121820;
 
 $warning: $red;
 $success: $green;

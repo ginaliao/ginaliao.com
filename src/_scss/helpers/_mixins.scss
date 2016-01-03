@@ -112,12 +112,17 @@ Typography
 }
 
 @mixin base-copy {
+  font-family:  $sans-serif;
+  font-weight: $weight-light;
+}
+
+@mixin body-copy {
   font-family: $serif;
   font-weight: $weight-light;
 }
 
 @mixin heading-copy {
-  font-family: $sans-serif; 
+  font-family: $sans-serif;
   font-weight: $weight-medium;
 }
 

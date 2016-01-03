@@ -50,6 +50,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 ::-moz-selection {
@@ -94,7 +95,7 @@ a:focus {
 a:active,
 a:hover {
   outline: 0;
-  color: $ebony;
+  color: $fiord;
 }
 
 /* Typography
