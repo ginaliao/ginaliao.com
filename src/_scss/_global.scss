@@ -27,6 +27,7 @@
 html {
   background: $concrete;
   box-sizing: border-box;
+  height: 100%;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -47,10 +48,9 @@ textarea {
 body {
   margin: 0;
   min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 ::-moz-selection {

@@ -8,13 +8,17 @@
 
   <body>
 
-    {% include header.html %}
+    <div class="page">
+      {% include header.html %}
 
-    <main role="main" class="site-content">
-      {{ content }}
-    </main>
+      <main role="main" class="site-content">
+        {{ content }}
+      </main>
 
-    {% include footer.html %}
+      {% include footer.html %}
+    </div>
+    
+    {% include modal.html %}
     {% include scripts.html %}
 
   </body>

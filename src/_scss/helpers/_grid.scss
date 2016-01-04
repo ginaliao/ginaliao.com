@@ -5,9 +5,9 @@ $gutter: 10px;
 .grid {
   @include clearfix;
   position: relative;
-  margin-left: -($gutter);
 
-  &.grid--forced {
+  &.grid--fixed {
+    margin-left: -($gutter);
     .col {
       float: left;
       padding-left: $gutter;
@@ -19,7 +19,8 @@ $gutter: 10px;
     }
   }
 
-  @include respond-to('base') {
+  @include respond-to('medium') {
+    margin-left: -($gutter);
     .col {
       float: left;
       padding-left: $gutter;

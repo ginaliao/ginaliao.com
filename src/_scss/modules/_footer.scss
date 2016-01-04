@@ -60,6 +60,7 @@
   color: $ebony;
   background-color: $ebony;
   transition-delay: 0.25s;
+  display: flex;
   @include respond-to('small') {
     float: right;
     width: 40%;
@@ -70,9 +71,9 @@
       background-color: transparent;
       .fold:before { opacity: 1; } // Hack for transitioning gradients.
       .fold--1 { transform: rotate3d(0, 1, 0, -45deg); }
-      .fold--2 { transform: translateX(calc(100% - 1px)) rotate3d(0, 1, 0, 90deg); }
-      .fold--3 { transform: translateX(calc(100% - 1px)) rotate3d(0, 1, 0, -90deg); }
-      .fold--4 { transform: translateX(calc(100% - 1px)) rotate3d(0, 1, 0, 90deg); }
+      .fold--2 { transform: translateX(100%) rotate3d(0, 1, 0, 90deg); }
+      .fold--3 { transform: translateX(100%) rotate3d(0, 1, 0, -90deg); }
+      .fold--4 { transform: translateX(100%) rotate3d(0, 1, 0, 90deg); }
       .pull-tab { width: 12em; }
     }
   }
@@ -97,7 +98,7 @@
   }
   @include respond-to('small') {
     width: 25%;
-    height: 100%;
+    display: flex;
   }
 }
 
