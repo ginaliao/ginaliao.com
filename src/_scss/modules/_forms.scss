@@ -63,12 +63,6 @@ input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
 legend {
   border: 0;
   padding: 0;
@@ -80,4 +74,54 @@ textarea {
 
 optgroup {
   font-weight: bold;
+}
+
+.fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  .form.is-modal & {
+    @include vertical-rhythm('margin', 0 -1);
+  }
+}
+
+.fieldset-label {
+  @include vertical-rhythm('margin', 0.5 1);
+}
+
+.field-group {
+  display: flex;
+  + .field-group {
+    border-top: 1px solid $concrete;
+  }
+  .field + .field {
+    border-left: 1px solid $concrete;
+  }
+}
+
+.field {
+  @include vertical-rhythm('padding', 0.5);
+  flex: 1;
+  background: #fff;
+}
+
+.field-label {
+  @include typeset('xsmall');
+  color: rgba($bunker, 0.75);
+  display: block;
+  text-transform: uppercase;
+}
+
+.field-text-input,
+.field-text-area {
+  width: 100%;
+  border: none;
+}
+
+.field-text-input {
+
+}
+
+.field-text-area {
+  height: 5em;
 }

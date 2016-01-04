@@ -26,6 +26,7 @@
   Modules - Unique to project
   ========================================================================== */
 
+  @import 'modules/modals';
   @import 'modules/forms';
   @import 'modules/layout'; 
   @import 'modules/post';
@@ -40,6 +41,6 @@
   // @import 'modules/hero';
   // @import 'modules/forms';
 
-  // @import 'modules/buttons';
+  @import 'modules/buttons';
   // @import 'modules/icons';
   // @import 'modules/lists';

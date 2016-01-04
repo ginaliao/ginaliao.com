@@ -56,3 +56,4 @@
 /====================*/
 
 .u-hide { display: none; }
+.u-visually-hidden { @extend %visually-hidden; }

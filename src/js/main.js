@@ -1,4 +1,4 @@
-(function() {
+(function($) {
 
   "use strict";
 
@@ -30,4 +30,67 @@
     
   };
 
-}());
+  var form = (function() {
+
+    var $modalWrapper = $('.js-modal-overlay');
+    var $modal = $('.js-modal');
+    var isFormLoaded = false;
+
+    var loadForm = function() {
+      $('.js-modal-content').load('/contact/index.html #js-form');
+      isFormLoaded = true;
+    };
+
+    var open = function(e) {
+      e.preventDefault();
+
+      if ( !isFormLoaded ) loadForm();
+
+      $('body').addClass('modal-is-visible');
+      $modalWrapper.addClass('is-visible');
+      $modal.addClass('is-visible');
+    };
+
+    var close = function(e) {
+      e.preventDefault();
+
+      $modal.removeClass('is-visible');
+
+      setTimeout(function() {
+        $('body').removeClass('modal-is-visible');
+        $modalWrapper.removeClass('is-visible');
+      }, 300);
+    };
+
+    var submit = function() {
+
+    };
+
+    return {
+      open: open,
+      close: close,
+      submit: submit
+    };
+
+  }());
+
+  var init = (function() {
+
+    var bindEvents = function() {
+      $('.js-modal-open').on('click', form.open);
+      $('.js-modal-close').on('click', form.close);
+      $('.js-form-submit').on('submit', form.submit);
+    };
+
+    var start = function() {
+      bindEvents();
+    };
+
+    return {
+      start: start
+    };
+
+  }());
+
+  init.start();
+}(Zepto));

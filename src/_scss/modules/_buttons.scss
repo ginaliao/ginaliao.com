@@ -1,0 +1,15 @@
+.button {
+  @include typeset('small');
+  @include vertical-rhythm('padding', 0.125 0.5);
+  border: 2px solid $cerulean;
+  background: transparent;
+  color: $cerulean;
+}
+
+.button--modal {
+  @include vertical-rhythm('margin-top', 0.5);
+  float: right;
+  background: $cerulean;
+  border: 2px solid $concrete;
+  color: $concrete;
+}
