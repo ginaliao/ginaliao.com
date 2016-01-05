@@ -103,6 +103,10 @@ optgroup {
   @include vertical-rhythm('padding', 0.5);
   flex: 1;
   background: #fff;
+  transition: background 0.3s ease-in-out;
+  &.is-invalid {
+    background: $warning;
+  }
 }
 
 .field-label {
@@ -114,6 +118,7 @@ optgroup {
 
 .field-text-input,
 .field-text-area {
+  background: transparent;
   width: 100%;
   border: none;
 }

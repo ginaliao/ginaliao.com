@@ -10,18 +10,18 @@ title: Contact
       <div class="field-group">
         <div class="field">
           <label for="name" class="field-label">Name</label>
-          <input type="text" name="name" id="name" class="field-text-input">
+          <input type="text" name="name" id="name" class="field-text-input" required>
         </div>
         <div class="field">
           <label for="email" class="field-label">Email</label>
-          <input type="email" name="_replyto" id="email" class="field-text-input">
+          <input type="email" name="_replyto" id="email" class="field-text-input" required>
         </div>
       </div>
 
       <div class="field-group">
         <div class="field">
           <label for="message" class="field-label">Message</label>
-          <textarea name="message" id="message" class="field-text-area"></textarea>
+          <textarea name="message" id="message" class="field-text-area" required></textarea>
         </div>
       </div>
     </fieldset>

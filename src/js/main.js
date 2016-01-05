@@ -36,11 +36,50 @@
 
     var $modalWrapper = $('.js-modal-overlay');
     var $modal = $('.js-modal');
+    var invalidClass = 'is-invalid';
     var isFormLoaded = false;
 
     var loadForm = function() {
-      $('.js-modal-content').load('/contact/index.html #js-form');
+      $('.js-modal-content').load('/contact/index.html #js-form', init);
       isFormLoaded = true;
+    };
+
+    var init = function() {
+      $('.js-contact').attr('novalidate', 'novalidate');
+    };
+
+    var validate = function(form) {
+      var fields = form.find('[required]');
+
+      function validateField($field) {
+        var tests = {
+          required: function(val) {
+            return !!val.length;
+          },
+          email: function(val) {
+            return this.required(val) && /^(?:\w+\.?\+?)*\w+@(?:\w+\.)+\w+$/.test(val);
+          }
+        };
+
+        var fieldValue = $field.val();
+        var valid = $field.attr('type') === 'email' ? tests.email(fieldValue) : tests.required(fieldValue);
+
+        $field.parents('.field').toggleClass('is-invalid', !valid);
+
+        return valid;
+      }
+
+      var invalid = $.grep(fields, function(field) {
+        return !validateField($(field));
+      });
+
+      if ( invalid.length ) {
+        $('body').on('blur', '.is-invalid', function() {
+          validateField($(this).find('[required]'));
+        });
+      }
+
+      return !invalid.length;
     };
 
     var open = function(e) {
@@ -88,28 +127,31 @@
         $buttonLabel.text('Try again?');
       }
 
-      $button
-        .removeClass('is-error')
-        .addClass('is-loading')
-        .attr('disabled', true);
-            
-      $buttonLabel.text('Sending');
+      if ( validate($form) ) {
+        $button
+          .removeClass('is-error')
+          .addClass('is-loading')
+          .attr('disabled', true);
+              
+        $buttonLabel.text('Sending');
 
-      var xhr = $.ajax({
-        url: $form.attr('action'),
-        method: 'POST',
-        data: $form.serialize(),
-        dataType: 'json'
-      });
+        var xhr = $.ajax({
+          url: $form.attr('action'),
+          method: 'POST',
+          data: $form.serialize(),
+          dataType: 'json'
+        });
 
-       xhr.done(doSuccessMessage);
-       xhr.fail(doErrorMessage);
+        xhr.done(doSuccessMessage);
+        xhr.fail(doErrorMessage);
 
-      // setTimeout(doSuccessMessage, 1500);
-      // setTimeout(doErrorMessage, 1500);
+        // setTimeout(doSuccessMessage, 1500);
+        // setTimeout(doErrorMessage, 1500);
+      }
     };
 
     return {
+      init: init,
       open: open,
       close: close,
       submit: submit
