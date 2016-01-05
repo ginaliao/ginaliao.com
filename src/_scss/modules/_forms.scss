@@ -92,10 +92,10 @@ optgroup {
 .field-group {
   display: flex;
   + .field-group {
-    border-top: 1px solid $concrete;
+    border-top: 1px solid $nobel;
   }
   .field + .field {
-    border-left: 1px solid $concrete;
+    border-left: 1px solid $nobel;
   }
 }
 

@@ -1,15 +1,82 @@
 .button {
   @include typeset('small');
-  @include vertical-rhythm('padding', 0.125 0.5);
   border: 2px solid $cerulean;
   background: transparent;
   color: $cerulean;
+  transition: border 0.3s ease-in-out;
+  &[disabled] {
+    pointer-events: none;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $ebony;
+  }
 }
 
 .button--modal {
   @include vertical-rhythm('margin-top', 0.5);
-  float: right;
-  background: $cerulean;
   border: 2px solid $concrete;
   color: $concrete;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.button--ajax {
+  position: relative;
+  overflow: hidden;
+  &:before,
+  &:after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &:before {
+    content: '';
+    background-color: $success;
+    transform: translateX(-100%);
+    transition: transform 1.5s ease-in-out;
+    z-index: -1;
+  }
+  &:after {
+    @include vertical-rhythm('padding', 0.125 0.5);
+    content: 'Sending\2026';
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  &.is-loading,
+  &.is-success,
+  &.is-error {
+    border-color: $ebony;
+  }
+  &.is-success {
+    background-color: $success;
+  }
+  &.is-error {
+    background-color: $warning;
+  }
+  &.is-loading {
+    &:before {
+      transform: translateX(-5%);
+    }
+    &:after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.button-label {
+  @include vertical-rhythm('padding', 0.125 0.5);
+  display: block;
+  transition: transform 0.3s ease-in-out;
+  .is-loading & {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }

@@ -62,8 +62,49 @@
       }, 300);
     };
 
-    var submit = function() {
+    var submit = function(e) {
+      e.preventDefault();
 
+      var $form = $(this);
+      var $button = $form.find('.js-submit');
+      var $buttonLabel = $button.find('.js-submit-text');
+
+      function doSuccessMessage() {
+        $button
+          .removeClass('is-loading')
+          .addClass('is-success');
+
+        $buttonLabel.text('Sent!');
+      }
+
+      function doErrorMessage() {
+        $button
+          .removeClass('is-loading')
+          .addClass('is-error')
+          .removeAttr('disabled');
+
+        $buttonLabel.text('Try again?');
+      }
+
+      $button
+        .removeClass('is-error')
+        .addClass('is-loading')
+        .attr('disabled', true);
+            
+      $buttonLabel.text('Sending');
+
+      var xhr = $.ajax({
+        url: $form.attr('action'),
+        method: 'POST',
+        data: $form.serialize(),
+        dataType: 'json'
+      });
+
+       xhr.done(doSuccessMessage);
+       xhr.fail(doErrorMessage);
+
+      // setTimeout(doSuccessMessage, 1500);
+      // setTimeout(doErrorMessage, 1500);
     };
 
     return {
@@ -79,7 +120,7 @@
     var bindEvents = function() {
       $('.js-modal-open').on('click', form.open);
       $('.js-modal-close').on('click', form.close);
-      $('.js-form-submit').on('submit', form.submit);
+      $('.js-modal').on('submit', '.js-contact', form.submit);
     };
 
     var start = function() {
@@ -93,4 +134,4 @@
   }());
 
   init.start();
-}(Zepto));
+}(jQuery));
