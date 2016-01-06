@@ -134,18 +134,18 @@
       if ( !isFormLoaded ) loadForm();
 
       $('body').addClass('modal-is-visible');
-      $modalWrapper.addClass('is-visible');
-      $modal.addClass('is-visible');
+      $modalWrapper.addClass('is-visible').attr('aria-hidden', false);
+      $modal.addClass('is-visible').attr('tabindex', '0').focus();
     };
 
     var close = function(e) {
       e.preventDefault();
 
-      $modal.removeClass('is-visible');
+      $modal.removeClass('is-visible').attr('tabindex', '-1');
 
       setTimeout(function() {
         $('body').removeClass('modal-is-visible');
-        $modalWrapper.removeClass('is-visible');
+        $modalWrapper.removeClass('is-visible').attr('aria-hidden', true);
       }, 300);
     };
 
