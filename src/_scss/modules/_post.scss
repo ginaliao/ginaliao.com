@@ -1,9 +1,33 @@
+.post-list {
+	list-style: none;
+	padding: 0;
+}
+
+.post-item {
+	display: flex;
+	align-items: center;
+	.post-title {
+		@include vertical-rhythm('margin', 0.5 0.5 0.5 0);
+	}
+	.post-meta {
+		font-size: $xsmall;
+	}
+	.post-category {
+		font-size: $xsmall;
+		font-weight: $weight-bold;
+		text-transform: uppercase;
+		border: none;
+		color: $fiord;
+	}
+}
+
 .post-title {
 	@include vertical-rhythm('margin', 1 0);
 	font-weight: $weight-bold;
 }
 
 .post {
+	@include body-copy;
 	h2 { @include vertical-rhythm('margin', 1 0 0.25); }
 	h3 { @include vertical-rhythm('margin', 1 0 0.25); }
 	h4 { @include vertical-rhythm('margin', 1 0); }

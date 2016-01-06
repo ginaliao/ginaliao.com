@@ -6,13 +6,15 @@ layout: home
 <p class="hero-subtitle">A front-end developer based in Auckland, New Zealand.</p>
 
 <ul class="post-list">
-  {% for post in site.posts %}
-    <li>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-      <h2>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  {% for post in site.posts limit:3 %}
+    <li class="post-item">
+      <h2 class="post-title">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
       </h2>
+
+      <span>
+        <a href="" class="post-category">{{ post.category }}</a> &raquo; <span class="post-meta">{{ post.date | date: '%-d %b %Y' }}</span>
+      </span>
     </li>
   {% endfor %}
 </ul>
