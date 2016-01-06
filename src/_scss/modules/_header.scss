@@ -1,0 +1,81 @@
+.site-header {
+  @include vertical-rhythm('padding', 1 0);
+  transition: background 0.15s linear 0.15s;
+  &.is-toggled {
+    background-color: $fiord;
+    transition: background 0s ease-out 0s;
+  }
+  @include respond-to('small') {
+    &.is-toggled {
+      background-color: $concrete;
+    }
+  }
+}
+
+.site-nav {
+  overflow: hidden;
+  @include respond-to('small') {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.site-nav-home {
+  border: none;
+  @include respond-to('small') {
+    margin-right: auto;
+    float: left;
+  }
+}
+
+.site-nav-list {
+  margin: 1em 0;
+  padding: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+  @include respond-to('small') {
+    float: right;
+    max-height: none;
+  }
+  &.is-toggled {
+    max-height: 1000px;
+  }
+}
+
+.site-nav-item {
+  @include vertical-rhythm('margin', 1 0);
+  text-align: center;
+  @include respond-to('small') {
+    display: inline-block;
+    margin: 0;
+    + .site-nav-item {
+      @include vertical-rhythm('margin-left', 0.5);
+    }
+  }
+}
+
+.site-nav-link {
+  font-size: $large;
+  text-transform: uppercase;
+  color: $concrete;
+  transition: color 0.3s ease-in-out;
+  @include respond-to('small') {
+    font-size: $small;
+    color: $ebony;
+  }
+  &:hover,
+  &:focus {
+    color: $cabaret;
+  }
+}
+
+.site-nav-toggle {
+  border: none;
+  outline: none;
+  background: transparent;
+  float: right;
+  @include respond-to('small') {
+    display: none;
+  }
+}

@@ -1,0 +1,19 @@
+.icon--small {
+  background-size: 32px;
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.icon--logo {
+  transition: all 0.3s ease-in-out;
+  .is-toggled & {
+    path { fill: $cabaret; }
+  }
+  @include respond-to('small') {
+    .is-toggled & {
+      path { fill: $ebony; }
+    }
+  }
+}

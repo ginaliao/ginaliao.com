@@ -4,7 +4,7 @@
 
   var icons = (function() {
 
-    var init = function() {
+    var initSocialIconAnimation = function() {
       // NOTE TO SELF: When optimising SVG, DO NOT convert path data; this will make Snap.svg animation go bonkers
       // (when animating to original state, the path becomes contorted)
 
@@ -27,7 +27,51 @@
       });
     };
 
+    var doMenuAnimation = function(toggled) {
+      // Adapted from http://tympanus.net/codrops/2013/11/05/animated-svg-icons-with-snap-svg/
+
+      var lines = [{ 
+        el: '#nav-line-1', 
+        animProperties: { 
+          from: { val: '{"path" : "m 5.0916789,20.818994 53.8166421,0"}', duration: 600, ease: mina.elastic }, 
+          to: { val: '{"path" : "M 12.972944,50.936147 51.027056,12.882035"}', duration: 600, ease: mina.elastic }
+        } 
+      }, { 
+        el: '#nav-line-2', 
+        animProperties: { 
+          from: { val: '{"transform" : "s1 1", "opacity" : 1}', before: '{"transform" : "s0 0"}', duration: 600, ease: mina.elastic }, 
+          to: { val: '{"opacity" : 0}', duration: 0, ease: mina.easeout }
+        } 
+      }, { 
+        el: '#nav-line-3', 
+        animProperties: { 
+          from: { val: '{"path" : "m 5.0916788,42.95698 53.8166422,0"}', duration: 600, ease: mina.elastic }, 
+          to: { val: '{"path" : "M 12.972944,12.882035 51.027056,50.936147"}', duration: 600, ease: mina.elastic }
+        } 
+      }];
+
+      var s = Snap('#nav-lines');
+      var g = s.select('g');
+      g = toggled ? g.animate({ stroke: '#F2F2F2' }, 300, mina.easeinout ) : g.animate({ stroke: '#243040' }, 300, mina.easeinout );
+
+      lines.forEach(function(line) {
+        var l = s.select(line.el);
+        var state = !toggled ? line.animProperties.from : line.animProperties.to;
+
+        if ( state.before ) {
+          l.attr( JSON.parse(state.before) );
+        }
+
+        l.stop().animate( JSON.parse(state.val), state.duration, state.ease );
+      });
+    };
+
+    var init = function() {
+      initSocialIconAnimation();
+    };
+
     return {
+      doMenuAnimation: doMenuAnimation,
       init: init
     };
   }());
@@ -159,19 +203,64 @@
 
   }());
 
+  var menu = (function() {
+
+    var $menuToggle = $('.js-toggle-menu');
+    var $menu = $('.js-site-nav-list');
+    var isToggled = false;
+
+    var toggleAria = function() {
+      $menuToggle.attr('aria-expanded', isToggled);
+      $menu.attr('aria-hidden', !isToggled);
+    };
+
+    var init = function() {
+      $menuToggle
+        .attr('aria-label', 'Toggle menu')
+        .attr('aria-controls', 'menu')
+        .attr('aria-expanded', false);
+
+      $menu
+        .attr('aria-labelledby', $menuToggle.attr('id'))
+        .attr('aria-hidden', true);
+    };
+
+    var toggle = function(e) {
+      e.preventDefault();
+      
+      isToggled = !isToggled;
+
+      toggleAria();
+      $menuToggle.toggleClass('is-toggled');
+      $('.js-site-header, .js-site-nav-list').toggleClass('is-toggled');
+
+      icons.doMenuAnimation($menuToggle.hasClass('is-toggled'));
+    };
+
+    return {
+      init: init,
+      toggle: toggle
+    };
+
+  }());
+
   var init = (function() {
 
     var bindEvents = function() {
       $('.js-modal-open').on('click', form.open);
       $('.js-modal-close').on('click', form.close);
       $('.js-modal').on('submit', '.js-contact', form.submit);
+      $('.js-toggle-menu').on('click', menu.toggle);
     };
 
     var start = function() {
+      $('.no-js').removeClass('no-js').addClass('js');
+
       grunticon(["/img/icons/icons.data.svg.css", "/img/icons/icons.data.png.css", "/img/icons/icons.fallback.css"], function() {
         grunticon.svgLoadedCallback(icons.init);
       });
 
+      menu.init();
       bindEvents();
     };
 

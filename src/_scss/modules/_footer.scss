@@ -60,8 +60,8 @@
   color: $ebony;
   background-color: $ebony;
   transition-delay: 0.25s;
-  display: flex;
   @include respond-to('small') {
+    display: flex;
     float: right;
     width: 40%;
     perspective: 3000px;
