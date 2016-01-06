@@ -11,9 +11,14 @@ source: ./src
 destination: ./dist
 paginate: 10
 permalink: /blog/:title/
+jekyll-archives:
+  enabled: [categories]
+  layout: 'archive'
 
 # Build settings
-gems: [jekyll-paginate]
+gems:
+  - jekyll-paginate
+  - jekyll-archives
 markdown: kramdown
 kramdown:
   input: GFM

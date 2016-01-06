@@ -1,12 +1,12 @@
 <ul class="post-list">
-  {% for post in site.posts limit:include.max %}
+  {% for post in include.collection limit:include.max %}
     <li class="post-item">
       <h2 class="post-title">
         <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
       </h2>
 
       <span class="post-meta">
-        <a href="" class="post-category">{{ post.category }}</a> &raquo; {{ post.date | date: '%-d %b %Y' }}
+        <a href="{{ "/category/" prepend: site.baseurl | append: post.category | downcase }}" class="post-category">{{ post.category }}</a> &raquo; {{ post.date | date: '%-d %b %Y' }}
       </span>
     </li>
   {% endfor %}
