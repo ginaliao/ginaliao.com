@@ -2,5 +2,4 @@
 	flex: 1 0 auto;
 	@include vertical-rhythm('padding', 1 0);
   p { @include body-copy; }
-  a { border-bottom: 1px solid rgba($ebony, 0.2); }
 }

@@ -85,6 +85,8 @@ pre {
 a {
   color: $cabaret;
   text-decoration: none;
+  transition: color 0.3s ease-in-out;
+  border-bottom: 1px solid rgba($ebony, 0.2);
 }
 
 a:focus {

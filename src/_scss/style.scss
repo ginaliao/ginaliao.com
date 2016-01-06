@@ -26,21 +26,14 @@
   Modules - Unique to project
   ========================================================================== */
 
-  @import 'modules/modals';
-  @import 'modules/forms';
   @import 'modules/layout'; 
+  @import 'modules/content';
   @import 'modules/post';
   @import 'modules/page';
   @import 'modules/header';
-  @import 'modules/content';
   @import 'modules/footer';
-  // @import 'modules/display';
-  // @import 'modules/navigation';
-  // @import 'modules/pullout';
-  // @import 'modules/ribbon';
-  // @import 'modules/hero';
-  // @import 'modules/forms';
 
+  @import 'modules/modals';
+  @import 'modules/forms';
   @import 'modules/buttons';
   @import 'modules/icons';
-  // @import 'modules/lists';

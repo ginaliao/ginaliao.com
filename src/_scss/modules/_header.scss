@@ -59,7 +59,7 @@
   font-size: $large;
   text-transform: uppercase;
   color: $concrete;
-  transition: color 0.3s ease-in-out;
+  border: none;
   @include respond-to('small') {
     font-size: $small;
     color: $ebony;
