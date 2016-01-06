@@ -132,7 +132,7 @@ module.exports = function(grunt) {
     // Run Jekyll build
     shell: {
       jekyllBuild: {
-        command: 'jekyll build'
+        command: 'bundle exec jekyll build'
       }
     },
     // Optimises SVGs
