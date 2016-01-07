@@ -219,12 +219,11 @@
     var init = function() {
       $menuToggle
         .attr('aria-label', 'Toggle menu')
-        .attr('aria-controls', 'menu')
+        .attr('aria-controls', 'site-nav-list')
         .attr('aria-expanded', false);
 
       $menu
-        .attr('aria-labelledby', $menuToggle.attr('id'))
-        .attr('aria-hidden', true);
+        .attr('aria-labelledby', $menuToggle.attr('id'));
     };
 
     var toggle = function(e) {
@@ -236,7 +235,7 @@
       $menuToggle.toggleClass('is-toggled');
       $('.js-site-header, .js-site-nav-list').toggleClass('is-toggled');
 
-      icons.doMenuAnimation($menuToggle.hasClass('is-toggled'));
+      icons.doMenuAnimation(isToggled);
     };
 
     return {
