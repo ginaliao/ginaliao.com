@@ -31,25 +31,31 @@
   width: 100%;
   max-width: 30em;
   position: relative;
-  transform: translate3d(0, 2000px, 0);
-    opacity: 0;
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  &.is-visible {
+  &:focus {
+    outline: none;
+  }
+  &.is-bouncing-in,
+  &.is-bouncing-out {
     animation-duration: 1s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
+  }
+  &.is-bouncing-in {
     animation-name: bounceInUp;
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  }
+  &.is-bouncing-out {
+    animation-name: bounceOutDown;
   }
 }
 
 .modal-close {
+  $unit: 1em;
   background: transparent;
   border: none;
   position: absolute;
-  top: -1em;
-  right: -1em;
-  height: 2em;
-  width: 2em;
+  top: -$unit;
+  right: -$unit;
+  height: $unit * 2;
+  width: $unit * 2;
   &:before,
   &:after {
     content: "";
@@ -97,5 +103,24 @@
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceOutDown {
+  20% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  40%, 45% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
   }
 }

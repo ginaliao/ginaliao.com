@@ -135,18 +135,18 @@
 
       $('body').addClass('modal-is-visible');
       $modalWrapper.addClass('is-visible').attr('aria-hidden', false);
-      $modal.addClass('is-visible').attr('tabindex', '0').focus();
+      $modal.removeClass('is-bouncing-out').addClass('is-bouncing-in').attr('tabindex', '0');
     };
 
     var close = function(e) {
       e.preventDefault();
 
-      $modal.removeClass('is-visible').attr('tabindex', '-1');
+      $modal.removeClass('is-bouncing-in').addClass('is-bouncing-out').attr('tabindex', '-1');
 
       setTimeout(function() {
         $('body').removeClass('modal-is-visible');
         $modalWrapper.removeClass('is-visible').attr('aria-hidden', true);
-      }, 300);
+      }, 750);
     };
 
     var submit = function(e) {
