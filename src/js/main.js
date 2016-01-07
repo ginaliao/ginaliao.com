@@ -245,6 +245,68 @@
 
   }());
 
+  var transition = (function() {
+
+    // https://rosspenman.com/pushstate-jquery/
+
+    var transitions = ['up', 'right', 'left'];
+    var outerContainerClass = '.js-site-content';
+    var innerContainerClass = '.js-container';
+    var $container = $(outerContainerClass);
+
+    function isInternal(url) {
+      if ( url === '/' ) {
+        return true;
+      }
+
+      var tempLink = document.createElement('a');
+      tempLink.href = url;
+      return tempLink.hostname === window.location.hostname;
+    }
+    
+    function loadPage(e) {
+      var a = e.currentTarget;
+      var url = a.href;
+
+      if ( isInternal(url) && url !== window.location.href && !$(a).hasClass('js-modal-open') ) {
+        e.preventDefault();
+        doTransition(url);
+      }
+    }
+
+    function loadPageOnBack(e) {
+      if (e.originalEvent.state !== null) {
+        doTransition(location.href);
+      }
+    }
+
+    function doTransition(url) {
+      var transition = transitions[Math.floor(Math.random() * 3)];
+
+      $('html, body').animate({
+        scrollTop: 0
+      }, 250);
+
+      $container.find(innerContainerClass).addClass('is-fading-out is-fading-out--' + transition);
+
+      setTimeout(function() {
+        $container.load(url + ' ' + innerContainerClass, function(content) {
+          // TODO: ADD GA pageviews
+          document.title = $(content).filter('title').text();
+          $container.find(innerContainerClass).addClass('is-fading-in is-fading-in--' + transition);
+        });
+      }, 500);
+
+      history.pushState({}, '', url);   
+    }
+
+    return {
+      loadPage: loadPage,
+      loadPageOnBack: loadPageOnBack
+    };
+
+  }());
+
   var init = (function() {
 
     var bindEvents = function() {
@@ -252,6 +314,8 @@
       $('.js-modal-close').on('click', form.close);
       $('.js-modal').on('submit', '.js-contact', form.submit);
       $('.js-toggle-menu').on('click', menu.toggle);
+      $('.js-site-header, .js-site-content, .js-site-footer').on('click', 'a', transition.loadPage);
+      $(window).on('popstate', transition.loadPageOnBack);
     };
 
     var start = function() {

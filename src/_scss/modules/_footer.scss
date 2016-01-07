@@ -59,7 +59,7 @@
 .folds {
   color: $ebony;
   background-color: $ebony;
-  transition-delay: 0.25s;
+  transition: background 0s linear 0.25s;
   @include respond-to('small') {
     display: flex;
     float: right;
@@ -83,7 +83,7 @@
   transform-style: preserve-3d;
   transform-origin: left center;
   background-color: $ebony; // Temporary background for weird gaps between folds (removed on hover)
-  transition: all 0.25s 0.2s ease-in-out;
+  transition: all 0.25s ease-in-out 0.2s;
   position: relative;
   &:before {
     content: '';
@@ -94,7 +94,7 @@
     bottom: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 0.5s 0.2s ease-in-out;
+    transition: opacity 0.5s ease-in-out 0.2s;
   }
   @include respond-to('small') {
     width: 25%;

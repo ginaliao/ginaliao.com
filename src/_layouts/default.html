@@ -11,8 +11,10 @@
     <div class="page">
       {% include header.html %}
 
-      <main role="main" class="site-content">
-        {{ content }}
+      <main role="main" class="js-site-content site-content">
+        <div class="js-container container">
+          {{ content }}
+        </div>
       </main>
 
       {% include footer.html %}
