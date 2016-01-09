@@ -1,5 +1,7 @@
 .button {
+  @include base-copy;
   @include typeset('small');
+  @include vertical-rhythm('padding', 0.125 0.5);
   border: 2px solid $cerulean;
   background: transparent;
   color: $cerulean;
@@ -21,6 +23,7 @@
   width: 25%;
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
   display: block;
 }
 
