@@ -268,7 +268,7 @@
       var a = e.currentTarget;
       var url = a.href;
 
-      if ( isInternal(url) && url !== window.location.href && !$(a).hasClass('js-modal-open') ) {
+      if ( isInternal(url) && !$(a).hasClass('js-modal-open') ) {
         e.preventDefault();
         doTransition(url);
       }
