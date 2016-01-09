@@ -61,14 +61,19 @@
 	&:before {
 		@include heading-copy;
 		@include typeset('xsmall');
+		background: linear-gradient(to bottom, scale-color($cerulean, $lightness: 2%), $cerulean);
 		text-align: center;
 		content: attr(data-tooltip);
 		display: block;
-		width: 10em;
+		width: 12em;
 		border-radius: 0.5em;
-		margin-left: -5em;
+		margin-left: -6em;
 		padding: 0.5em;
 		opacity: 0;
+		box-shadow:
+			inset 0 1px 0 $cerulean,
+			inset 0 1px 0 1px rgba(#fff, 0.2),
+			0 1px 0 1px rgba(0, 0, 0, 0.1);
 		transform-origin: center bottom;
 		transform: rotateZ(15deg) scale(0);
 		transition: 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550); // easeInOutBack
