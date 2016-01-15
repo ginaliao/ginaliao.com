@@ -291,9 +291,12 @@
 
       setTimeout(function() {
         $container.load(url + ' ' + innerContainerClass, function(content) {
-          // TODO: ADD GA pageviews
           document.title = $(content).filter('title').text();
           $container.find(innerContainerClass).addClass('is-fading-in is-fading-in--' + transition);
+
+          if ( /ginaliao\.com/.test(window.location.hostname) ) {
+            ga('send', 'pageview');
+          }
         });
       }, 500);
 
