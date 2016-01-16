@@ -5,8 +5,7 @@ layout: default
 <article class="post">
   <header class="post-header">
     <span class="post-meta">
-      <a href="" class="post-category">{{ page.category }}</a> &raquo; 
-      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %b %Y' }}</time>
+      Posted in <a href="" class="post-category">{{ page.category }}</a> on <time datetime="{{ page.date | date: '%Y-%m-%d' }}" class="post-date">{{ page.date | date: '%-d %b %Y' }}</time>
     </span>
 		<h1 class="post-title">{{ page.title }}</h1>  
   </header>

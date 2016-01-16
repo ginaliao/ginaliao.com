@@ -4,19 +4,30 @@
 }
 
 .post-item {
+	@include vertical-rhythm('margin', 1 0 0 0);
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap-reverse;
 	.post-meta {
 		@include typeset('xsmall');
 	}
 	.post-title {
-		@include vertical-rhythm('margin', 0.5 0.5 0.5 0);
+		@include vertical-rhythm('margin', 0 0.5 0 0);
 	}
 }
 
 .post-title {
 	@include vertical-rhythm('margin', 1 0);
 	font-weight: $weight-bold;
+	.has-subtitle & {
+		margin-bottom: 0;
+	}
+}
+
+.post-subtitle {
+	.has-subtitle & {
+		margin-top: 0;
+	}
 }
 
 .post {
@@ -29,15 +40,34 @@
 }
 
 .post-meta {
-	@include base-copy;
 	@include typeset('small');
+	font-weight: $weight-light;
+	color: $nobel;
+	font-style: italic;
 	a { border: none; }
+}
+
+.post-category,
+.post-date {
+	@include base-copy;
+	font-style: normal;
 }
 
 .post-category {
 	font-weight: $weight-bold;
+	color: $cabaret;
 	text-transform: uppercase;
+}
+
+.post-date {
 	color: $fiord;
+}
+
+.post-link {
+	color: $fiord;
+	&:hover {
+		color: $cabaret;
+	}
 }
 
 .post-content {
