@@ -7,10 +7,11 @@ $gutter: 10px;
   position: relative;
 
   &.grid--fixed {
-    margin-left: -($gutter);
-    .col {
+    @include vertical-rhythm('margin-left', -0.5);
+    .column,
+    .columns {
+      @include vertical-rhythm('padding-left', 0.5);
       float: left;
-      padding-left: $gutter;
     }
 
     @each $c in $columns {
@@ -20,15 +21,24 @@ $gutter: 10px;
   }
 
   @include respond-to('medium') {
-    margin-left: -($gutter);
-    .col {
+    @include vertical-rhythm('margin-left', -0.5);
+    .column,
+    .columns {
+      @include vertical-rhythm('padding-left', 0.5);
       float: left;
-      padding-left: $gutter;
     }
 
     @each $c in $columns {
       $i: index($columns, $c);
       .#{$c} { width: column($i, $column-length); }
+    }
+
+    &.grid--collapsed {
+      margin-left: 0;
+      .column,
+      .columns {
+        padding-left: 0;
+      }
     }
   }
 }
