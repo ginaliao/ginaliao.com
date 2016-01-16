@@ -1,5 +1,5 @@
 # Site settings
-title: I'm Gina Liao
+title: Gina Liao
 email: gina@ginaliao.com
 description: > # this means to ignore newlines until "baseurl:"
   A self-taught front-end developer with a fancy degree in graphic design.
@@ -15,7 +15,16 @@ permalink: /blog/:title/
 jekyll-archives:
   enabled: [categories]
   layout: 'archive'
-
+collections:
+  work:
+    output: true
+defaults:
+  - scope:
+      path: ""
+      type: work
+    values:
+      layout: work
+      
 # Build settings
 gems:
   - jekyll-paginate

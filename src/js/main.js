@@ -293,6 +293,7 @@
         $container.load(url + ' ' + innerContainerClass, function(content) {
           document.title = $(content).filter('title').text();
           $container.find(innerContainerClass).addClass('is-fading-in is-fading-in--' + transition);
+          wipe.init();
 
           if ( /ginaliao\.com/.test(window.location.hostname) ) {
             ga('send', 'pageview');
@@ -310,6 +311,65 @@
 
   }());
 
+  var wipe = (function(i, elem) {
+
+    var x = 500;
+    var y = 400;
+    var n = 5;
+    var mStart = 's1, 0, 0, 0';
+    var mMiddle = 's1, 1, 1 , 0';
+    var mEnd = 's1, 0, ' + y + ', ' + y;
+
+    var origin = {
+      mouseenter: {
+        from: mStart,
+        to: mMiddle
+      },
+      mouseleave: {
+        from: mMiddle,
+        to: mEnd
+      }
+    };
+
+    function createSvg(index, elem) {
+      var s = Snap(elem);
+      
+      s.attr({ viewBox: "0 0 " + x + " " + y });
+
+      for ( var i = 0; i < n; i++ ) {
+        s.rect(i * (x / n), 0, x / n, y).attr({ transform: mStart }).attr({ fill: '#121820' });
+      }
+    }
+
+    function init() {
+      $('.goo').each(createSvg);
+    }
+
+    function doAnimation(e) {
+      /* jshint ignore:start */
+      var $link = $(this);
+      var $content = $link.find('.js-media-body');
+      var svg = $link.find('svg')[0];
+      /* jshint ignore:end */
+      
+      var s = Snap(svg);
+      var rects = s.selectAll('rect');
+
+      $content.removeClass('is-visible');
+      
+      rects.forEach(function(rect) {
+        rect.attr({ transform: origin[e.type].from});
+        rect.animate({ transform: origin[e.type].to }, Math.random() * 200 + 200, mina.easeinout);
+      });
+    }
+
+    return {
+      init: init,
+      doAnimation: doAnimation
+    };
+
+  }());
+
   var init = (function() {
 
     var bindEvents = function() {
@@ -318,6 +378,7 @@
       $('.js-modal').on('submit', '.js-contact', form.submit);
       $('.js-toggle-menu').on('click', menu.toggle);
       $('.js-site-header, .js-site-content, .js-site-footer').on('click', 'a', transition.loadPage);
+      $('.js-site-content').on('mouseenter mouseleave', '.js-media-link', wipe.doAnimation);
       $(window).on('popstate', transition.loadPageOnBack);
     };
 
@@ -329,6 +390,7 @@
       });
 
       menu.init();
+      wipe.init();
       bindEvents();
     };
 
