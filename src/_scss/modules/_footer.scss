@@ -1,4 +1,7 @@
 .site-footer {
+  p {
+    @include base-copy;
+  }
   * {
     margin-top: 0;
     margin-bottom: 0;

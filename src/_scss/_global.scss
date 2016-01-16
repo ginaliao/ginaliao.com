@@ -131,6 +131,7 @@ blockquote {
 }
 
 p {
+  @include body-copy;
   @include typeset('base');
   @include vertical-rhythm('margin', 0 0 1 0);
 }
