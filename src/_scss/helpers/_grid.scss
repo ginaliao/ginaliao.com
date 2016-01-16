@@ -1,16 +1,16 @@
 $columns: one two three four five six seven eight nine ten eleven;
 $column-length: length($columns) + 1;
-$gutter: 10px;
+$gutter: 0.5;
 
 .grid {
   @include clearfix;
   position: relative;
 
   &.grid--fixed {
-    @include vertical-rhythm('margin-left', -0.5);
+    @include vertical-rhythm('margin-left', -$gutter);
     .column,
     .columns {
-      @include vertical-rhythm('padding-left', 0.5);
+      @include vertical-rhythm('padding-left', $gutter);
       float: left;
     }
 
@@ -21,10 +21,10 @@ $gutter: 10px;
   }
 
   @include respond-to('medium') {
-    @include vertical-rhythm('margin-left', -0.5);
+    @include vertical-rhythm('margin-left', -$gutter);
     .column,
     .columns {
-      @include vertical-rhythm('padding-left', 0.5);
+      @include vertical-rhythm('padding-left', $gutter);
       float: left;
     }
 
