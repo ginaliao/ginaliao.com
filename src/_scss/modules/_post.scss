@@ -19,24 +19,12 @@
 .post-title {
 	@include vertical-rhythm('margin', 1 0);
 	font-weight: $weight-bold;
-	.has-subtitle & {
-		margin-bottom: 0;
-	}
 }
 
 .post-subtitle {
 	.has-subtitle & {
 		margin-top: 0;
 	}
-}
-
-.post {
-	@include body-copy;
-	h2 { @include vertical-rhythm('margin', 1 0 0.25); }
-	h3 { @include vertical-rhythm('margin', 1 0 0.25); }
-	h4 { @include vertical-rhythm('margin', 1 0); }
-	h5 { @include vertical-rhythm('margin', 1 0); }
-	h6 { @include vertical-rhythm('margin', 1 0); }
 }
 
 .post-meta {
@@ -71,70 +59,17 @@
 }
 
 .post-content {
+	@include body-copy;
+	h2 { @include vertical-rhythm('margin', 1 0 0.25); }
+	h3 { @include vertical-rhythm('margin', 1 0 0.25); }
+	h4 { @include vertical-rhythm('margin', 1 0); }
+	h5 { @include vertical-rhythm('margin', 1 0); }
+	h6 { @include vertical-rhythm('margin', 1 0); }
 	a { border-bottom: 1px solid rgba($ebony, 0.2); }
 }
 
-.supplement {
-	background: rgba($ebony, 0.1);
-	padding: 0 0.25em;
-	cursor: pointer;
-	position: relative;
-	display: inline-block;
-	&:before,
-	&:after {
-		background: $cerulean;
-		position: absolute;
-		visibility: hidden;
-		bottom: 110%;
-		left: 50%;
-	}
-	&:before {
-		@include heading-copy;
-		@include typeset('xsmall');
-		background: linear-gradient(to bottom, scale-color($cerulean, $lightness: 2%), $cerulean);
-		text-align: center;
-		content: attr(data-tooltip);
-		display: block;
-		width: 12em;
-		border-radius: 0.5em;
-		margin-left: -6em;
-		padding: 0.5em;
-		opacity: 0;
-		box-shadow:
-			inset 0 1px 0 $cerulean,
-			inset 0 1px 0 1px rgba(#fff, 0.2),
-			0 1px 0 1px rgba(0, 0, 0, 0.1);
-		transform-origin: center bottom;
-		transform: rotateZ(15deg) scale(0);
-		transition: 0.3s cubic-bezier(0.680, -0.550, 0.265, 1.550); // easeInOutBack
-	}
-	&:after {
-		content: '';
-		width: 1em;
-		height: 1em;
-		margin-left: -0.5em;
-		transform: rotate(45deg) scale(0);
-		transform-origin: center center;
-		z-index: -1;
-	}
-	&:hover,
-	&:focus {
-		background: rgba($ebony, 0.2);
-	}
-	&:hover:before,
-	&:hover:after,
-	&:focus:before,
-	&:focus:after {
-		visibility: visible;
-		opacity: 1;
-	}
-	&:hover:before,
-	&:focus:before {
-		transform: rotateZ(0) scale(1);
-	}
-	&:hover:after,
-	&:focus:after {
-		transform: rotate(45deg) scale(1);
-		transition: 0.3s 0.1s cubic-bezier(0.680, -0.550, 0.265, 1.550); // easeInOutBack
-	}
+.recede {
+	@include base-copy;
+	@include typeset('small');
+	color: $nobel;
 }
