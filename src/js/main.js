@@ -226,8 +226,16 @@
         .attr('aria-labelledby', $menuToggle.attr('id'));
     };
 
+    var close = function(e) {
+      if ( $('.js-site-nav-list').hasClass('is-toggled') ) {
+        toggle(e);
+      }
+    };
+
     var toggle = function(e) {
-      e.preventDefault();
+      if ( $(e.target).hasClass('js-toggle-menu') ) {
+        e.preventDefault();
+      }
       
       isToggled = !isToggled;
 
@@ -240,6 +248,7 @@
 
     return {
       init: init,
+      close: close,
       toggle: toggle
     };
 
@@ -377,6 +386,7 @@
       $('.js-modal-close').on('click', form.close);
       $('.js-modal').on('submit', '.js-contact', form.submit);
       $('.js-toggle-menu').on('click', menu.toggle);
+      $('.js-site-nav-list').on('click', 'a', menu.close);
       $('.js-site-header, .js-site-content, .js-site-footer').on('click', 'a', transition.loadPage);
       $('.js-site-content').on('mouseenter mouseleave', '.js-media-link', wipe.doAnimation);
       $(window).on('popstate', transition.loadPageOnBack);
