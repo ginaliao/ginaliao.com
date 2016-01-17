@@ -1,5 +1,6 @@
 .site-header {
   @include vertical-rhythm('padding-top', 1);
+  flex-shrink: 0;
   transition: background 0.15s linear 0.15s;
   &.is-toggled {
     background-color: $fiord;

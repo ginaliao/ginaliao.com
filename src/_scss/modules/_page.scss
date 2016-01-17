@@ -1,6 +1,6 @@
 .site-content {
   @include vertical-rhythm('margin', 1 0);
-  flex-grow: 1;
+  flex: 1 0 auto;
 }
 
 .page {
