@@ -28,6 +28,29 @@ module.exports = function(grunt) {
         }
       }
     },
+    // gzips assets (automatic gzip not available on NFS)
+    compress: {
+      options: {
+        mode: 'gzip'
+      },
+      all: {
+        files: [{
+          expand: true,
+          cwd: 'dist/css',
+          src: ['*.css'],
+          dest: 'dist/css/',
+          ext: '.css.gz',
+          extDot: 'last'
+        }, {
+          expand: true,
+          cwd: 'dist/js',
+          src: ['*.js'],
+          dest: 'dist/js/',
+          ext: '.js.gz',
+          extDot: 'last'
+        }]
+      },
+    },
     // Copies files
     copy: {
       images: {
@@ -205,5 +228,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['build', 'imageoptim', 'browserSync', 'watch']);
   grunt.registerTask('build', ['svgmin', 'grunticon', 'shell:jekyllBuild', 'sass', 'autoprefixer']);
-  grunt.registerTask('dist', ['build', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin']);
+  grunt.registerTask('dist', ['build', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin', 'compress']);
 };
