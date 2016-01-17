@@ -28,6 +28,7 @@
 }
 
 .post-meta {
+	@include body-copy;
 	@include typeset('small');
 	font-weight: $weight-light;
 	color: $nobel;
