@@ -195,7 +195,7 @@ module.exports = function(grunt) {
     },
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['dist/{,*/}*.html'],
+      html: ['dist/**/*.html'],
       css: ['dist/css/{,*/}*.css'],
       options: {
         assetsDirs: ['dist', 'dist/img']
