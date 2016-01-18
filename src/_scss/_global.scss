@@ -189,6 +189,10 @@ nav ol {
   list-style-image: none;
 }
 
+li {
+  @include typeset('base');
+}
+
 /* Embedded content
 ========================================================================== */
 
