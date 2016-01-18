@@ -79,7 +79,7 @@ Then run it once (or restart your Terminal).
 source ~/.rvm/scripts/rvm
 ```
 
-Now we cann install Ruby.
+Now we can install Ruby.
 
 ```
 rvm install 2.3.0
