@@ -42,7 +42,7 @@ A simple solution is to have a build run automatically from your committed sourc
 
 Previously I've used [Wercker](http://wercker.com/) for running tests/builds but I wanted to try out [CodeShip](http://codeship.com/) after hearing great things about it. They have a free plan (even better, there are no build restrictions on public repositories) so I thought, why not?
 
-It was suprisingly straightfoward to set up.
+It was suprisingly straightforward to set up.
 
 Upon signing up to CodeShip, you give it access to your SCM (such as [GitHub](http://github.com/)), choose a project repository and configure test settings. The test settings is where you set up the build system similarly to your local system. I use the following commands:
 
