@@ -280,6 +280,7 @@
       if ( isInternal(url) && !$(a).hasClass('js-modal-open') ) {
         e.preventDefault();
         doTransition(url);
+        history.pushState({}, '', url);
       }
     }
 
@@ -309,8 +310,6 @@
           }
         });
       }, 500);
-
-      history.pushState({}, '', url);   
     }
 
     return {
