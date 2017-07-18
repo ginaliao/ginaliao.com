@@ -2,7 +2,7 @@
   {% assign sorted = (include.collection | sort: include.sortby) | reverse %}
   {% for item in sorted limit:include.max %}
     <li class="six column media-item">
-      <a href="{{ "/work" | prepend: site.baseurl }}/{{ item.title | slugify }}" class="js-media-link media-link">
+      <a href="{{ "/work/" | prepend: site.baseurl }}{{ item.title | slugify }}/" class="js-media-link media-link">
         <svg class="goo" filter="url(#goo)" opacity="0.95"></svg>
         <img src="{{ site.baseurl }}/img/work/{{ item.image.thumbnail.small }}" srcset="{{ site.baseurl }}/img/work/{{ item.image.thumbnail.small }} 375w, {{ site.baseurl }}/img/work/{{ item.image.thumbnail.large }} 750w" sizes="(min-width: 768px) 375px, 100vh" alt="Screenshot of work for {{ item.title }}" class="media-thumbnail">
         <div class="js-media-body media-body">

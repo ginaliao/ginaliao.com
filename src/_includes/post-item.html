@@ -6,7 +6,7 @@
       </h2>
 
       <span class="post-meta">
-        <a href="{{ "/category/" prepend: site.baseurl | append: post.category | downcase }}" class="post-category">{{ post.category }}</a> &raquo; <span class="post-date">{{ post.date | date: '%-d %b %Y' }}</span>
+        <a href="{{ "/category/" prepend: site.baseurl | append: post.category | append: '/' | downcase }}" class="post-category">{{ post.category }}</a> &raquo; <span class="post-date">{{ post.date | date: '%-d %b %Y' }}</span>
       </span>
     </li>
   {% endfor %}
