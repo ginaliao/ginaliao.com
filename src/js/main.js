@@ -275,7 +275,7 @@
     
     function loadPage(e) {
       var a = e.currentTarget;
-      var url = a.href;
+      var url = $(a).attr('href');
 
       if ( isInternal(url) && !$(a).hasClass('js-modal-open') ) {
         e.preventDefault();
