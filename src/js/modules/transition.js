@@ -46,7 +46,9 @@ class Transition {
 
     setTimeout(() => {
       this.$container.load(url + ' ' + this.innerContainerClass, content => {
-        document.title = $(content).filter('title').text();
+        var $content = $(content);
+        document.title = $content.filter('title').text();
+        $('meta[name="description"]').attr('content', $content.filter('meta[name="description"]').attr('content'));
         this.$container.find(this.innerContainerClass).addClass('is-fading-in is-fading-in--' + transition);
         wipe.init();
 
