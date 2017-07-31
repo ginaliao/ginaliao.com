@@ -1,6 +1,6 @@
 ---
 title: Rinnai Water Campaign
-url: https://rinnai.co.nz/water
+site_url: https://rinnai.co.nz/water
 year: 2016
 image:
   thumbnail:

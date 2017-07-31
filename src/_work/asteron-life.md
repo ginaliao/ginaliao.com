@@ -1,6 +1,6 @@
 ---
 title: Asteron Life
-url: http://asteronlife.co.nz/lifesnap
+site_url: http://asteronlife.co.nz/lifesnap
 year: 2015
 image:
   thumbnail:

@@ -1,6 +1,6 @@
 ---
 title: Milford Centre
-url: http://milfordcentre.co.nz
+site_url: http://milfordcentre.co.nz
 year: 2017
 image:
   thumbnail:

@@ -1,6 +1,6 @@
 ---
 title: Genesis Energy
-url: https://signup.genesisenergy.co.nz
+site_url: https://signup.genesisenergy.co.nz
 year: 2014
 image:
   thumbnail:

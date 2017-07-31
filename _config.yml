@@ -10,7 +10,6 @@ linkedin_username: ginaliao
 github_username:  ginaliao
 source: ./src
 destination: ./dist
-paginate: 10
 permalink: /blog/:title/
 jekyll-archives:
   enabled: [categories]
@@ -26,8 +25,7 @@ defaults:
       layout: work
       
 # Build settings
-gems:
-  - jekyll-paginate
+plugins:
   - jekyll-archives
 markdown: kramdown
 kramdown:

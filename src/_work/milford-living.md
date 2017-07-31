@@ -1,6 +1,6 @@
 ---
 title: Milford Living
-url: http://milfordliving.co.nz
+site_url: http://milfordliving.co.nz
 year: 2016
 image:
   thumbnail:

@@ -1,6 +1,6 @@
 ---
 title: NZRPG
-url: http://nzrpg.co.nz
+site_url: http://nzrpg.co.nz
 year: 2016
 image:
   thumbnail:

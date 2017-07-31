@@ -1,6 +1,6 @@
 ---
 title: Energy Online
-url: https://signup.energyonline.co.nz
+site_url: https://signup.energyonline.co.nz
 year: 2014
 image:
   thumbnail:

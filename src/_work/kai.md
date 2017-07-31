@@ -1,6 +1,6 @@
 ---
 title: Kai
-url: https://getkai.co.nz
+site_url: https://getkai.co.nz
 year: 2017
 image:
   thumbnail:
