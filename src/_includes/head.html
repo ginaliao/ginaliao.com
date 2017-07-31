@@ -21,10 +21,10 @@
   /////////////////////////////////////////////////////////////////////////////////////// -->
 
   <link href="https://fonts.googleapis.com/css?family=Lato:900,700,400" rel="stylesheet" type="text/css">
-
-  <!-- build:css /css/style.css -->
-  <link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
-  <!-- endbuild -->
+  <!-- <link rel="stylesheet" href="{{ site.baseurl }}/css/style{% if jekyll.environment == "production" %}.{{site.data.webpack.hash}}{% endif %}.css"> -->
+  {% if jekyll.environment == "production" %}
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.{{site.data.webpack.hash}}.css">
+  {% endif %}
 
   <script>
     /*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */

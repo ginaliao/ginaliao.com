@@ -31,3 +31,5 @@ markdown: kramdown
 kramdown:
   input: GFM
   auto_ids: false
+exclude: ['js', 'scss']
+keep_files: ['js', 'css']

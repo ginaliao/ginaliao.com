@@ -1,0 +1,99 @@
+var fs = require('fs');
+var path = require('path');
+var glob = require('glob');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WriteFilePlugin = require('write-file-webpack-plugin');
+
+var isDevelopment = process.env.NODE_ENV === 'development';
+var isProduction = process.env.NODE_ENV === 'production';
+
+module.exports = {
+  context: path.resolve(__dirname, './src'),
+  entry: ['webpack-hot-middleware/client', './js/main.js'],
+  output: {
+    path: path.resolve(__dirname, './dist/'),
+    publicPath: '/',
+    filename: isProduction ? 'js/main.bundle.[hash].js' : 'js/main.bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }]
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                url: false
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function() {
+                  return [
+                    require('autoprefixer')({ browsers: ['last 2 version', '> 1%', 'ie 8', 'ie 9', 'Safari >= 6'] })
+                  ];
+                }
+              }
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        })
+      }
+    ]
+  },
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'Modernizr': 'modernizr'
+    }),
+    new ExtractTextPlugin({
+      filename: isProduction ? 'css/style.[hash].css' : 'css/style.css',
+      allChunks: true,
+      disable: isDevelopment
+    }),
+    new WriteFilePlugin({
+      test: /^(?!.*(hot)).*/,
+    }),
+    function() {
+      if ( isProduction ) {
+        this.plugin('done', function(stats) {
+          fs.writeFileSync(path.join(__dirname, 'src/_data', 'webpack.yml'), 'hash: "' + stats.hash + '"');
+        });
+      }
+    }
+  ],
+  externals: {
+    jquery: 'jQuery',
+    modernizr: 'Modernizr'
+  },
+  devServer: {
+    hot: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    publicPath: '/'
+  }
+};
+
+if ( isProduction ) {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin()
+  );
+}
