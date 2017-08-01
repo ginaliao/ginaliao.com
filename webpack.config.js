@@ -1,20 +1,15 @@
 var fs = require('fs');
 var path = require('path');
-var glob = require('glob');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var WriteFilePlugin = require('write-file-webpack-plugin');
-
-var isDevelopment = process.env.NODE_ENV === 'development';
-var isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
-  entry: ['webpack-hot-middleware/client', './js/main.js'],
+  entry: ['./js/main.js'],
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath: '/',
-    filename: isProduction ? 'js/main.bundle.[hash].js' : 'js/main.bundle.js'
+    filename: 'js/main.bundle.[hash].js'
   },
   module: {
     rules: [
@@ -58,42 +53,24 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery',
       'Modernizr': 'modernizr'
     }),
     new ExtractTextPlugin({
-      filename: isProduction ? 'css/style.[hash].css' : 'css/style.css',
-      allChunks: true,
-      disable: isDevelopment
-    }),
-    new WriteFilePlugin({
-      test: /^(?!.*(hot)).*/,
+      filename: 'css/style.[hash].css',
+      allChunks: true
     }),
     function() {
-      if ( isProduction ) {
-        this.plugin('done', function(stats) {
-          fs.writeFileSync(path.join(__dirname, 'src/_data', 'webpack.yml'), 'hash: "' + stats.hash + '"');
-        });
-      }
+      this.plugin('done', function(stats) {
+        fs.writeFileSync(path.join(__dirname, 'src/_data', 'webpack.yml'), 'hash: "' + stats.hash + '"');
+      });
     }
   ],
   externals: {
     jquery: 'jQuery',
     modernizr: 'Modernizr'
-  },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve(__dirname, './dist'),
-    publicPath: '/'
   }
 };
-
-if ( isProduction ) {
-  module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}

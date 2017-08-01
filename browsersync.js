@@ -6,7 +6,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 /**
  * Require ./webpack.config.js and make a bundler from it
  */
-var webpackConfig = require('./webpack.config');
+var webpackConfig = require('./webpack.dev');
 var bundler = webpack(webpackConfig);
 
 /**

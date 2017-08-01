@@ -8,7 +8,7 @@
     "build": "npm run clean && npm run webpack && npm run jekyll",
     "jekyll": "cross-env JEKYLL_ENV=production bundle exec jekyll build",
     "jekyll:dev": "cross-env JEKYLL_ENV=development bundle exec jekyll build --watch --incremental",
-    "webpack": "cross-env NODE_ENV=production webpack --progress --colors",
+    "webpack": "cross-env NODE_ENV=production webpack --optimize-minimize",
     "webpack:dev": "cross-env NODE_ENV=development node browsersync --colors --hide-modules"
   },
   "devDependencies": {
