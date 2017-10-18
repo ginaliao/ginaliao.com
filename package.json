@@ -1,6 +1,9 @@
 {
   "name": "ginaliao-com",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "start": "npm run dev",
     "clean": "rm -rf dist",
