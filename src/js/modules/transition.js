@@ -1,4 +1,3 @@
-
 import wipe from './wipe';
 
 // https://rosspenman.com/pushstate-jquery/
