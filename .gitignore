@@ -5,5 +5,3 @@
 node_modules
 dist
 src/_drafts
-src/img/icons/*
-!src/img/icons/raw
