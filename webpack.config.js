@@ -21,10 +21,7 @@ module.exports = {
         test: /\.js$/,
         exclude: [/node_modules/],
         use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: ['es2015']
-          }
+          loader: 'babel-loader'
         }]
       },
       {
@@ -43,7 +40,7 @@ module.exports = {
               options: {
                 plugins: function() {
                   return [
-                    require('autoprefixer')({ browsers: ['last 2 version', '> 1%', 'ie 8', 'ie 9', 'Safari >= 6'] })
+                    require('postcss-cssnext')(),
                   ];
                 }
               }
