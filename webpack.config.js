@@ -2,6 +2,10 @@ var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WriteFilePlugin = require('write-file-webpack-plugin');
+
+var isDevelopment = process.env.NODE_ENV === 'development';
+var isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -9,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist/'),
     publicPath: '/',
-    filename: 'js/main.bundle.[hash].js'
+    filename: isProduction ? 'js/main.bundle.[hash].js' : 'js/main.bundle.js'
   },
   module: {
     rules: [
@@ -53,6 +57,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.ProvidePlugin({
       '$': 'jquery',
@@ -61,16 +66,38 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: 'css/style.[hash].css',
-      allChunks: true
+      allChunks: true,
+      disable: isDevelopment
     }),
+  ],
+  externals: {
+    jquery: 'jQuery',
+    modernizr: 'Modernizr'
+  },
+  devServer: {
+    hot: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    publicPath: '/'
+  }
+};
+
+if ( isDevelopment ) {
+  module.exports.entry.unshift('webpack-hot-middleware/client');
+  module.exports.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new WriteFilePlugin({
+      test: /^(?!.*(hot)).*/,
+    })
+  );
+}
+
+if ( isProduction ) {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin(),
     function() {
       this.plugin('done', function(stats) {
         fs.writeFileSync(path.join(__dirname, 'src/_data', 'webpack.yml'), 'hash: "' + stats.hash + '"');
       });
     }
-  ],
-  externals: {
-    jquery: 'jQuery',
-    modernizr: 'Modernizr'
-  }
-};
+  );
+}

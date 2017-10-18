@@ -6,7 +6,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 /**
  * Require ./webpack.config.js and make a bundler from it
  */
-var webpackConfig = require('./webpack.dev');
+var webpackConfig = require('./webpack.config');
 var bundler = webpack(webpackConfig);
 
 /**
@@ -16,17 +16,17 @@ browserSync({
   server: {
     baseDir: 'dist',
     middleware: [
-    webpackDevMiddleware(bundler, {
-      // IMPORTANT: dev middleware can't access config, so we should
-      // provide publicPath by ourselves
-      publicPath: webpackConfig.output.publicPath,
-      stats: 'minimal'
+      webpackDevMiddleware(bundler, {
+        // IMPORTANT: dev middleware can't access config, so we should
+        // provide publicPath by ourselves
+        publicPath: webpackConfig.output.publicPath,
+        stats: 'minimal'
 
-      // for other settings see
-      // http://webpack.github.io/docs/webpack-dev-middleware.html
-    }),
-    // bundler should be the same as above
-    webpackHotMiddleware(bundler)
+        // for other settings see
+        // http://webpack.github.io/docs/webpack-dev-middleware.html
+      }),
+      // bundler should be the same as above
+      webpackHotMiddleware(bundler)
     ]
   },
 
