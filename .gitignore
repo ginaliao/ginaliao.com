@@ -1,7 +1,1 @@
-.sass-cache
-.DS_Store
-.htaccess
-.tmp
 node_modules
-dist
-src/_drafts

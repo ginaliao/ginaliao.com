@@ -1,0 +1,16 @@
+---
+layout: default.njk
+---
+
+<article class="post">
+  <header class="post-header">
+    <span class="post-meta">
+      Posted in <a href="{{ category | url }}" class="post-category">{{ category }}</a> on <time datetime="{{ page.date | postDate }}" class="post-date">{{ page.date | readablePostDate }}</time>
+    </span>
+		<h1 class="post-title">{{ title }}</h1>  
+  </header>
+
+  <div class="post-content">
+  	{{ content | safe }}
+  </div>
+</article>

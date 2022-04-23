@@ -1,0 +1,17 @@
+---
+layout: page
+title: Hello, I'm Gina Liao.
+subtitle: A front-end developer based in Auckland, New Zealand.
+---
+
+<p>I'm a self-taught front-end developer with a fancy degree in graphic design. While I didn't need formal training to get into the industry, I believe a passion for what you do and an eagerness to learn will get you far.</p>
+
+<p>It's my philosophy to always strive to be better than yesterday, and I enjoy finding opportunities to incorporate new techniques into projects where possible. Find out more about my <a href="{{ 'process' | url }}">skills and toolset</a>.</p>
+
+{% from 'post-item.njk' import postItem %}
+
+<ul class="post-list">
+  {% for post in collections.post %}
+    {{ postItem(post.data, post.url, post.date) }}
+  {% endfor %}
+</ul>

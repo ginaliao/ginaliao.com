@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////
+
+  ||  || |||||| ||     ||     |||||| ||
+  ||  || ||     ||     ||     ||  || ||
+  |||||| ||||   ||     ||     ||  || ||
+  ||  || ||     ||     ||     ||  ||
+  ||  || |||||| |||||| |||||| |||||| ||
+
+  I see you're a view-sourcer like me.
+  To get into the nitty gritty, check out the repo on https://github.com/ginaliao/ginaliao.com
+  If you like what you see, give me a holler at hello@ginaliao.com
+
+  /////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:900,700,400" rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/prismjs@1.27.0/themes/prism-twilight.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    /*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+  !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+  </script>
+
+  <link rel="canonical" href="/posts/2014-07-18-power-up-your-coding-skills/">
+  <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+
+  
+</head>
+
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0" style="position: absolute;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -20" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="page">
+      <header class="js-site-header site-header" role="banner">
+  <div class="container">
+    <nav role="navigation" class="site-nav">
+      <a href="/" class="site-nav-home">
+        <span class="site-logo icon icon--logo" data-grunticon-embed></span>
+      </a>
+
+      <button type="button" id="toggle-menu" class="js-toggle-menu site-nav-toggle">
+        <span aria-hidden="true" class="icon icon--hamburger site-nav-lines" data-grunticon-embed></span>
+        <span class="u-visually-hidden">Toggle menu</span>
+      </button>
+
+      <ul id="site-nav-list" class="js-site-nav-list site-nav-list">
+        <li class="site-nav-item"><a href="/process/" class="site-nav-link">Process</a></li>
+        <li class="site-nav-item"><a href="/work/" class="site-nav-link">Work</a></li>
+        <li class="site-nav-item"><a href="/blog/" class="site-nav-link">Blog</a></li>
+        <li class="site-nav-item">
+          <ul class="social-list">
+            <li class="social-item">
+              <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="/contact/" class="social-link js-modal-open"><div class="icon icon--mail icon--small" data-grunticon-embed></div></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+      <main role="main" class="js-site-content site-content">
+        <div class="js-container container">
+          
+<article class="post">
+  <header class="post-header">
+    <span class="post-meta">
+      Posted in <a href="Tips" class="post-category">Tips</a> on <time datetime="2014-07-18" class="post-date">18 July 2014</time>
+    </span>
+		<h1 class="post-title">Power Up Your Coding Skills</h1>  
+  </header>
+
+  <div class="post-content">
+  	<p>Being a front-end developer, it’s so important to keep on top of the ever-changing web. Sometimes books get outdated fast and you need to find alternatives. The good thing is that you can find resources in a plethora of forms thanks to the open contribution of the web community. I’d like to share the resources/methods that I’ve come across over the years for building up my coding knowledge.</p>
+<h2>Listen to podcasts</h2>
+<p>This is great if you have a long commute or you are winding down for the day. For everything front-end related, <a href="http://shoptalkshow.com/">Shoptalk Show</a> should be your go-to. <a href="http://unfinished.bz/">Unfinished Business</a> and <a href="http://unmatchedstyle.com/bizcraft">BizCraft</a> are also really great if you run a web dev business or are a freelancer.</p>
+<h2>Get a subscription to a professional learning site</h2>
+<p>If you’ve got the money and the time, <a href="http://codeschool.com/">Code School</a> and <a href="http://treehouse.com/">Treehouse</a> are a couple of really great resources for learning. You watch a video and then do a series of hands-on quizzes or code exercises to utilise the knowledge you’ve just gained.</p>
+<h2>Subscribe to RSS feeds</h2>
+<p>Use a feed reader (I used a combination of Feedly and Newsify) to subscribe to blogs and get all their articles in one place. Great for commutes as you can read everything offline.</p>
+<h2>Subscribe to email newsletters</h2>
+<p>In recent times, email newsletters have been my go-to option for keeping up to date as most of them arrive in the inbox nicely curated with the good stuff so you don’t have to spend your time weeding through everything.</p>
+<h3>General topics:</h3>
+<p><a href="http://web-design-weekly.com/">Web Design Weekly</a>
+<a href="http://wdrl.info/">Web Development Reading List</a>
+<a href="http://freshbrewed.co/">Fresh Brewed Frontend</a>
+<a href="http://www.smashingmagazine.com/">Smashing Newsletter</a>
+<a href="http://appendto.com/modern-web-observer/">The Modern Web Observer</a>
+<a href="http://hackernewsletter.com/">Hacker Newsletter</a></p>
+<h3>Specific topics:</h3>
+<p><a href="http://responsivedesignweekly.com/">Responsive Design Weekly</a>
+<a href="http://webtoolsweekly.com/">Web Tools Weekly</a>
+<a href="http://javascriptweekly.com/">JavaScript Weekly</a>
+<a href="http://html5weekly.com/">HTML5 Weekly</a>
+<a href="http://css-weekly.com/">CSS Weekly</a>
+<a href="http://wpmail.me/">wpMail</a></p>
+<h2>Read it on Reddit</h2>
+<p>Part link sharing and part forum. I highly recommend checking out <a href="http://reddit.com/r/webdev">/r/webdev</a> on a daily basis. There you’ll also find more specific subreddits such as <a href="http://reddit.com/r/javascript">/r/javascript</a> and <a href="http://reddit.com/r/web_design">/r/web_design</a>.</p>
+<h2>View source</h2>
+<p>The great thing about the web is that if you’re ever left wondering “HOW DID THEY DO THAT?”, you can easily take a peek under the hood. It’s a great way to find new jQuery plugins, check out other naming conventions or just to see how other people mark up their HTML.</p>
+<h2>Just build websites</h2>
+<p>A constant mantra of the Shoptalk Show, but it could not be any truer. It’s great reading books and blogs, but you really need to put your knowledge into practice in order to really grok concepts. Pro tip: grab a PSD resource from somewhere like <a href="http://premiumpixels.com/">Premium Pixels</a> or <a href="http://pixeden.com/">Pixeden</a> and just build it. It’s a lot different to designing your own interface and building it as you’re not setting up your own challenges.</p>
+<p>And if you ever get stuck, Google and StackOverflow are your friends.</p>
+
+  </div>
+</article>
+
+        </div>
+      </main>
+
+      <footer class="js-site-footer site-footer" role="contentinfo">
+  <div class="footer-primary">
+    <p class="fold-front">Check out some of my <a href="/work/">recent work</a><br> or find out more about <a href="/process/">my development process</a>.</p>
+
+    <a href="https://github.com/ginaliao/ginaliao.com" class="folds">
+      <div class="fold fold--1">
+        <div class="fold fold--2">
+          <div class="fold fold--3">
+            <div class="fold fold--4">
+              <div class="pull-tab">Under the hood</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-secondary">
+    <p>&copy; 2016 Gina Liao.</p>
+
+    <ul class="social-list">
+      <li class="social-item">
+        <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="/contact" class="social-link js-modal-open"><div class="icon icon--mail" data-grunticon-embed></div></a>
+      </li>
+    </ul>
+  </div>
+</footer>
+    </div>
+  </body>
+
+</html>

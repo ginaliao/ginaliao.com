@@ -1,0 +1,33 @@
+<header class="js-site-header site-header" role="banner">
+  <div class="container">
+    <nav role="navigation" class="site-nav">
+      <a href="{{ "/" | url  }}" class="site-nav-home">
+        <span class="site-logo icon icon--logo" data-grunticon-embed></span>
+      </a>
+
+      <button type="button" id="toggle-menu" class="js-toggle-menu site-nav-toggle">
+        <span aria-hidden="true" class="icon icon--hamburger site-nav-lines" data-grunticon-embed></span>
+        <span class="u-visually-hidden">Toggle menu</span>
+      </button>
+
+      <ul id="site-nav-list" class="js-site-nav-list site-nav-list">
+        <li class="site-nav-item"><a href="{{ "/process/" | url  }}" class="site-nav-link">Process</a></li>
+        <li class="site-nav-item"><a href="{{ "/work/" | url  }}" class="site-nav-link">Work</a></li>
+        <li class="site-nav-item"><a href="{{ "/blog/" | url  }}" class="site-nav-link">Blog</a></li>
+        <li class="site-nav-item">
+          <ul class="social-list">
+            <li class="social-item">
+              <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="{{ "/contact/" | url  }}" class="social-link js-modal-open"><div class="icon icon--mail icon--small" data-grunticon-embed></div></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

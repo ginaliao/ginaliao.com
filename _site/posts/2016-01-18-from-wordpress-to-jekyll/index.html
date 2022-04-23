@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////
+
+  ||  || |||||| ||     ||     |||||| ||
+  ||  || ||     ||     ||     ||  || ||
+  |||||| ||||   ||     ||     ||  || ||
+  ||  || ||     ||     ||     ||  ||
+  ||  || |||||| |||||| |||||| |||||| ||
+
+  I see you're a view-sourcer like me.
+  To get into the nitty gritty, check out the repo on https://github.com/ginaliao/ginaliao.com
+  If you like what you see, give me a holler at hello@ginaliao.com
+
+  /////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:900,700,400" rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/prismjs@1.27.0/themes/prism-twilight.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    /*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+  !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+  </script>
+
+  <link rel="canonical" href="/posts/2016-01-18-from-wordpress-to-jekyll/">
+  <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+
+  
+</head>
+
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0" style="position: absolute;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -20" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="page">
+      <header class="js-site-header site-header" role="banner">
+  <div class="container">
+    <nav role="navigation" class="site-nav">
+      <a href="/" class="site-nav-home">
+        <span class="site-logo icon icon--logo" data-grunticon-embed></span>
+      </a>
+
+      <button type="button" id="toggle-menu" class="js-toggle-menu site-nav-toggle">
+        <span aria-hidden="true" class="icon icon--hamburger site-nav-lines" data-grunticon-embed></span>
+        <span class="u-visually-hidden">Toggle menu</span>
+      </button>
+
+      <ul id="site-nav-list" class="js-site-nav-list site-nav-list">
+        <li class="site-nav-item"><a href="/process/" class="site-nav-link">Process</a></li>
+        <li class="site-nav-item"><a href="/work/" class="site-nav-link">Work</a></li>
+        <li class="site-nav-item"><a href="/blog/" class="site-nav-link">Blog</a></li>
+        <li class="site-nav-item">
+          <ul class="social-list">
+            <li class="social-item">
+              <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="/contact/" class="social-link js-modal-open"><div class="icon icon--mail icon--small" data-grunticon-embed></div></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+      <main role="main" class="js-site-content site-content">
+        <div class="js-container container">
+          
+<article class="post">
+  <header class="post-header">
+    <span class="post-meta">
+      Posted in <a href="Workflow" class="post-category">Workflow</a> on <time datetime="2016-01-18" class="post-date">18 January 2016</time>
+    </span>
+		<h1 class="post-title">From WordPress to Jekyll</h1>  
+  </header>
+
+  <div class="post-content">
+  	<p>Having recently used <a href="http://jekyllrb.com">Jekyll</a> for a client website, I was inspired to step away from overly complicated CMSes and use a static site generator for my website. It's been a long time coming for many reasons:</p>
+<ul>
+<li>My site has been in need of a serious overhaul (it was built in the early stages of my career and never updated to reflect best practices I've picked up)</li>
+<li>WordPress has way too many features for what was really a simple blog with a couple of extra pages</li>
+<li>The constant need to update WordPress and plugins for security reasons</li>
+<li>My login script has been automatically disabled by my web host on several occasions due to the volume of brute force login attempts</li>
+<li>To save in web hosting costs</li>
+</ul>
+<h2>Jekyll to the rescue</h2>
+<p>Contrary to the title of this post, I'm not going to delve too deeply into Jekyll. What I will do is list some of my favourite things about using it:</p>
+<ul>
+<li>Keeping things DRY with includes and loops</li>
+<li>Collections aka the Custom Post Types of Jekyll</li>
+<li>Writing my posts in Markdown</li>
+<li>Using filters to transform text</li>
+<li>Syntax highlighting without using a JavaScript plugin</li>
+</ul>
+<h2>Fuss-free forms</h2>
+<p>Given the static nature of Jekyll, I used <a href="http://formspree.io/">FormSpree</a>, a third-party service for form processing. It's as simple as adding <code>//formspree.io/your@email.com</code> to the form <code>action</code> attribute. Once your form is submitted, it will send an email to the provided email address with all the inputs you've added to your form.</p>
+<p>There are a few special FormSpree inputs you can add too if you want to do things such as configure a redirect or enable spam protection.</p>
+<p>Best of all, it's free!</p>
+<h2>Hammering in a new build process</h2>
+<p>We human beings are lazy creatures and shun boring, repetitive tasks. Especially now with a huge focus on web performance, we must optimise all our files, whether it be concatenating, minifying or testing. That's where automation comes in and these days, <a href="http://gruntjs.com/">Grunt</a> and <a href="http://gulpjs.com/">Gulp</a> are all the rage.</p>
+<p>Hopping on the task runner bandwagon a tad late, I chose to use Grunt due to its popularity and longevity. I've set up my Gruntfile to watch for changes and run <code>jekyll build</code>, and all the general compiling, linting and optimising as required.</p>
+<p>While it's great that we've got task runners that can do all the boring stuff, it feels a bit icky to commit both your original source files as well as your generated/optimised files (not to mention the merge conflict headache that will sooner or later ensue if you use version control).</p>
+<p>A simple solution is to have a build run automatically from your committed source files and then deploy the generated files. What's great is that I can leave the final optimisations (concatenating and minifying) to the very last step, leaving my local environment much more easily debuggable.</p>
+<p>Previously I've used <a href="http://wercker.com/">Wercker</a> for running tests/builds but I wanted to try out <a href="http://codeship.com/">CodeShip</a> after hearing great things about it. They have a free plan (even better, there are no build restrictions on public repositories) so I thought, why not?</p>
+<p>It was suprisingly straightforward to set up.</p>
+<p>Upon signing up to CodeShip, you give it access to your SCM (such as <a href="http://github.com/">GitHub</a>), choose a project repository and configure test settings. The test settings is where you set up the build system similarly to your local system. I use the following commands:</p>
+<h4>Setup Commands</h4>
+<pre><code>rvm use 2.2.0 --install
+gem install bundler
+bundle install --deployment
+npm install grunt-cli
+npm install
+</code></pre>
+<p>The above commands will install the desired Ruby version, Bundler (a gem dependency package manager), the gems listed in the <code>Gemfile</code> with Bundler, the Grunt command line and Node modules (Grunt plugins for the most part) specified in <code>package.json</code>.</p>
+<h4>Configure Test Pipelines</h4>
+<pre><code>grunt dist
+</code></pre>
+<p>Then, <code>grunt dist</code> is run after everything is succesfully installed in the Setup Commands step.</p>
+<h2>One-line deployment</h2>
+<p>Once CodeShip has run my <code>grunt dist</code> task and built all the files, I can deploy to my server with one line of code with rsync (a Linux utility for keeping directories in sync).</p>
+<p>In order for rsync to transfer files to my server without a password, an SSH key must be added. There's different ways to do this based on your hosting provider, but for my host <a href="https://www.nearlyfreespeech.net/">NearlyFreeSpeech.net</a>, it's as easy as adding the SSH public key provided by CodeShip to your keychain. You can <a href="https://faq.nearlyfreespeech.net/section/uploading/sshkeys#sshkeys">find out how to do this</a> on their website.</p>
+<p>On the deployment configuration page in CodeShip, I chose to use a custom script with the following command:</p>
+<pre><code>rsync -vrzc --delete --exclude '.htaccess' ~/clone/dist/ [USERNAME]@[SERVER]:[PATH/TO/TARGET/]
+</code></pre>
+<p>A breakdown of what all the arguments are:</p>
+<ul>
+<li><strong><code>-v</code></strong>: verbose (prints to screen what's being transferred)</li>
+<li><strong><code>-r</code></strong>: recursive (it transfers all directories and subdirectories)</li>
+<li><strong><code>-z</code></strong>: compress (compresses the files during transfer)</li>
+<li><strong><code>-c</code></strong>: checksum (as my Grunt task builds new files everytime, it's more efficient to check by the size rather than timestamp otherwise all files would be transferred over everytime)</li>
+<li><strong><code>--delete</code></strong>: deletes any files in the target location that are not in the source location</li>
+<li><strong><code>--exclude</code></strong>: excludes files to sync in either the source or target location (in my case I had a staging site-specific .htaccess file I manually uploaded)</li>
+<li><strong><code>~/clone/dist</code></strong>: the source location (with CodeShip, files are put in a /clone folder; in my case, my built files are within the /dist folder)</li>
+<li><strong><code>[USERNAME]@[SERVER]:[PATH/TO/TARGET/]</code></strong>: target server details</li>
+</ul>
+<p>Take note of the '/' after the source and target locations. rsync will copy everything within the last specified folders but not include the folder itself.</p>
+<p>Magic!</p>
+<h2>Why not host on GitHub Pages?</h2>
+<p>I made a conscious decision to not utilise free hosting on GitHub Pages for two reasons. The first reason being that I wanted to have absolute control over my build process rather than being restricted to a simple <code>jekyll build</code> command. This also allowed me to use Jekyll plugins as needed without any restrictions.</p>
+<p>The second reason being I've been using NearlyFreeSpeech to host my personal website for nearly my entire career. It's cheap pay-as-you-go hosting and I've never had to spend more than a few dollars a year. In hosting a WordPress website, there were some extra costs for the MySQL database and PHP. Now I only have to pay for hosting a static site (which should now cost 2-3 times less), but I get the added benefit of messing around with SSH, DNS and other hacky things.</p>
+<p>There is, however, one caveat to using NearlyFreeSpeech and that is that it doesn't support server-side gzipping. Instead, I had to &quot;automanually&quot; run a separate Grunt task to gzip my assets with <a href="https://github.com/gruntjs/grunt-contrib-compress">grunt-contrib-compress</a> (e.g. turning <code>scripts.js</code> into <code>scripts.js.gz</code>).</p>
+<p>Then I popped the following into my .<code>htaccess</code>:</p>
+<pre><code>RewriteEngine on
+RewriteCond %{HTTP:accept-encoding} gzip
+RewriteCond %{REQUEST_FILENAME} !\.gz$
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule (.*) $1.gz [L]
+</code></pre>
+<h2>Conclusion</h2>
+<p>What it comes down to is what your requirements are. For me, I'm practical, lazy and cheap so this worked out quite well (hehe). Be sure to check out what's under the hood of this website on <a href="https://github.com/ginaliao/ginaliao.com">GitHub</a>.</p>
+<h2>Resources</h2>
+<p><a href="http://medoingthings.com/writing/2015/03/front-end-deployment-for-the-rest-of-us">Front End Deployment For The Rest of Us</a>
+<a href="https://www.basbarten.nl/jekyll-deployment/2014/deploying-a-jekyll-website-using-rsync/">Deploying a Jekyll website using Rsync</a>
+<a href="http://nathangrigg.net/2012/04/rsyncing-jekyll/">Rsyncing Jekyll</a></p>
+
+  </div>
+</article>
+
+        </div>
+      </main>
+
+      <footer class="js-site-footer site-footer" role="contentinfo">
+  <div class="footer-primary">
+    <p class="fold-front">Check out some of my <a href="/work/">recent work</a><br> or find out more about <a href="/process/">my development process</a>.</p>
+
+    <a href="https://github.com/ginaliao/ginaliao.com" class="folds">
+      <div class="fold fold--1">
+        <div class="fold fold--2">
+          <div class="fold fold--3">
+            <div class="fold fold--4">
+              <div class="pull-tab">Under the hood</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-secondary">
+    <p>&copy; 2016 Gina Liao.</p>
+
+    <ul class="social-list">
+      <li class="social-item">
+        <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="/contact" class="social-link js-modal-open"><div class="icon icon--mail" data-grunticon-embed></div></a>
+      </li>
+    </ul>
+  </div>
+</footer>
+    </div>
+  </body>
+
+</html>

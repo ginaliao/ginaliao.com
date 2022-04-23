@@ -1,0 +1,11 @@
+{% macro postItem(post, url, date) %}
+    <li class="post-item">
+        <h2 class="post-title">
+            <a href="{{ url }}" class="post-link">{{ post.title }}</a>
+        </h2>
+
+        <span class="post-meta">
+            <a href="{{ "/category/" | url }}" class="post-category">{{ post.category }}</a> &raquo; <span class="post-date">{{ date | readablePostDate }}</span>
+        </span>
+    </li>
+{% endmacro %}

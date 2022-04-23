@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////
+
+  ||  || |||||| ||     ||     |||||| ||
+  ||  || ||     ||     ||     ||  || ||
+  |||||| ||||   ||     ||     ||  || ||
+  ||  || ||     ||     ||     ||  ||
+  ||  || |||||| |||||| |||||| |||||| ||
+
+  I see you're a view-sourcer like me.
+  To get into the nitty gritty, check out the repo on https://github.com/ginaliao/ginaliao.com
+  If you like what you see, give me a holler at hello@ginaliao.com
+
+  /////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:900,700,400" rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/prismjs@1.27.0/themes/prism-twilight.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script>
+    /*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+  !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
+  </script>
+
+  <link rel="canonical" href="/posts/2017-05-17-an-evolution-in-javascript-file-organisation/">
+  <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+
+  
+</head>
+
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0" style="position: absolute;">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 40 -20" result="goo" />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="page">
+      <header class="js-site-header site-header" role="banner">
+  <div class="container">
+    <nav role="navigation" class="site-nav">
+      <a href="/" class="site-nav-home">
+        <span class="site-logo icon icon--logo" data-grunticon-embed></span>
+      </a>
+
+      <button type="button" id="toggle-menu" class="js-toggle-menu site-nav-toggle">
+        <span aria-hidden="true" class="icon icon--hamburger site-nav-lines" data-grunticon-embed></span>
+        <span class="u-visually-hidden">Toggle menu</span>
+      </button>
+
+      <ul id="site-nav-list" class="js-site-nav-list site-nav-list">
+        <li class="site-nav-item"><a href="/process/" class="site-nav-link">Process</a></li>
+        <li class="site-nav-item"><a href="/work/" class="site-nav-link">Work</a></li>
+        <li class="site-nav-item"><a href="/blog/" class="site-nav-link">Blog</a></li>
+        <li class="site-nav-item">
+          <ul class="social-list">
+            <li class="social-item">
+              <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin icon--small" data-grunticon-embed></div></a>
+            </li>
+            <li class="social-item">
+              <a href="/contact/" class="social-link js-modal-open"><div class="icon icon--mail icon--small" data-grunticon-embed></div></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+      <main role="main" class="js-site-content site-content">
+        <div class="js-container container">
+          
+<article class="post">
+  <header class="post-header">
+    <span class="post-meta">
+      Posted in <a href="Workflow" class="post-category">Workflow</a> on <time datetime="2017-05-17" class="post-date">17 May 2017</time>
+    </span>
+		<h1 class="post-title">An Evolution in JavaScript File Organisation</h1>  
+  </header>
+
+  <div class="post-content">
+  	<p>In recent weeks, due to the nature of a project I'm currently working on, I've had to rethink how to best organise and build my JS files. Having another look at Webpack (which a year ago I didn't even want to think about because it looked HARD), I'm kicking myself for not using this earlier. As a developer who generally builds light UI/UX interactions as opposed to full-blown apps, I didn't feel like it was necessary to properly organise my JS or give much thought to bundling. But looking back at projects I worked on years, months or even weeks ago that I need to add a feature to, it's sometimes hard to figure out what things do in all the spaghetti. Here's where a little housekeeping pays dividends.</p>
+<h2>Way, way back</h2>
+<p>Back when I was a newbie just starting out, I didn't know much JavaScript and could just barely make use of jQuery plugins. The mantra drilled into me was always &quot;styles at the top, scripts at the bottom&quot;, so that's what I did. Often the bottom of my HTML files would just look like:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js/plugins.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js/main.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>The <code>plugins.js</code> file was a monstrous [manual] concatenation of all the plugins (downloaded manually) used on the site. The <code>main.js</code> file was for all my jQuerying and whatnot. You can bet the contents of the <code>main.js</code> file was &quot;ordered&quot; chronologically by when I wrote it and wrapped in a <code>document.ready</code> function. Gross.</p>
+<h2>In more recent times</h2>
+<p>Fast-forward to a few years back and at this point I've learned to utilise Grunt/Gulp and I'm not manually building my files anymore. I made an attempt to redeem myself by encapsulating functionality with the Revealing Module Pattern. My <code>main.js</code> now looked like:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> module <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  <br>  <span class="token keyword">function</span> <span class="token function">haveAFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// do some stuff</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">function</span> <span class="token function">andAnotherFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// do some other stuff</span><br>  <span class="token punctuation">}</span><br><br>  <span class="token keyword">return</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">haveAFunction</span><span class="token operator">:</span> haveAFunction<span class="token punctuation">,</span><br>    <span class="token literal-property property">andAnotherFunction</span><span class="token operator">:</span> andAnotherFunction<br>  <span class="token punctuation">}</span><br><br><span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span><span class="token function">haveAFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Yeah, I thought I was pretty badass when I finally understood closures. This was nice for a while, but then I always dreaded how long these files got as it was all lumped in the same file as usual. This was basically just organised chaos.</p>
+<h2>...and now</h2>
+<p>Webpack. It's always been a daunting concept to me (and still is), but I've learned to embrace it. The key thing is to just start and then Google things when your build fails. Now instead of using the Revealing Module Pattern, I can separate out each module into its own file and export its contents:</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// module.js</span><br><br><span class="token keyword">class</span> <span class="token class-name">Module</span> <span class="token punctuation">{</span><br>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>config <span class="token operator">=</span> <span class="token punctuation">{</span><br>      <span class="token literal-property property">someSetting</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">anotherSetting</span><span class="token operator">:</span> <span class="token boolean">false</span><br>    <span class="token punctuation">}</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>$foo <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">bindEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span>$foo<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token comment">// do some things</span><br>  <span class="token punctuation">}</span><br>  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">bindEvents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><br><br><span class="token keyword">export</span> <span class="token keyword">let</span> module <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Module</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Here I'm using ES6 which will require Babel to transform the code so it's consumable for older browsers. I think the class-based syntax is quite nice for organising the different parts of a module. What's cool is I can also import things inside each of my modules so I can keep track of dependencies. With a library like Lodash, I can even import individual functions that I want to use without importing the entire library. Now my  <code>main.js</code> file isn't littered with code but is just a series of imports and is basically now an entry point. Once configured, Webpack will go through the entry point and bundle all dependencies together.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// main.js</span><br><br><span class="token keyword">import</span> path <span class="token keyword">from</span> <span class="token string">'path'</span><span class="token punctuation">;</span> <span class="token comment">// inside /node_modules and installed via npm/yarn</span><br><span class="token keyword">import</span> <span class="token string">'./module.js'</span><span class="token punctuation">;</span> <span class="token comment">// my own JS file, note the relative path</span></code></pre>
+<p>Here's an example of my <code>webpack.config.js</code>:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">var</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token keyword">var</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">main</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'js/main.js'</span><span class="token punctuation">)</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">path</span><span class="token operator">:</span> __dirname <span class="token operator">+</span> <span class="token string">'/js'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">'[name].bundle.js'</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">loaders</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><br>      <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>      <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span><br>      <span class="token literal-property property">exclude</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><br>      <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>        <span class="token literal-property property">presets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'es2015'</span><span class="token punctuation">]</span><br>      <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><span class="token punctuation">]</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span><br>    <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>ProvidePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>      <span class="token string-property property">'$'</span><span class="token operator">:</span> <span class="token string">'jquery'</span><span class="token punctuation">,</span><br>      <span class="token string-property property">'jQuery'</span><span class="token operator">:</span> <span class="token string">'jquery'</span><span class="token punctuation">,</span><br>      <span class="token string-property property">'_'</span><span class="token operator">:</span> <span class="token string">'lodash'</span><span class="token punctuation">,</span><br>      <span class="token string-property property">'Modernizr'</span><span class="token operator">:</span> <span class="token string">'modernizr'</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><br>  <span class="token punctuation">]</span><span class="token punctuation">,</span><br>  <span class="token literal-property property">externals</span><span class="token operator">:</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">jquery</span><span class="token operator">:</span> <span class="token string">'jQuery'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">lodash</span><span class="token operator">:</span> <span class="token string">'lodash'</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">modernizr</span><span class="token operator">:</span> <span class="token string">'Modernizr'</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span><br><br><span class="token keyword">if</span> <span class="token punctuation">(</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><br>    <span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>optimize<span class="token punctuation">.</span>UglifyJsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br>  <span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<p>A breakdown of what this does:</p>
+<ul>
+<li>I can specify multiple entry points and Webpack will output my files with a naming convention based on the key</li>
+<li>I use Babel to transpile my code</li>
+<li>Allow the use of external JS files that are not bundled with Webpack</li>
+<li>If I've set a Node environment variable equal to 'production', the JS files will then be minified</li>
+</ul>
+<p>I was able to put together this Webpack process and configuration in a day through trial and error. I'm by no means an expert on Webpack now but this is a great starting point as I venture deeper. Goodbye crazy, long, unmaintainable files and hello sanity!</p>
+
+  </div>
+</article>
+
+        </div>
+      </main>
+
+      <footer class="js-site-footer site-footer" role="contentinfo">
+  <div class="footer-primary">
+    <p class="fold-front">Check out some of my <a href="/work/">recent work</a><br> or find out more about <a href="/process/">my development process</a>.</p>
+
+    <a href="https://github.com/ginaliao/ginaliao.com" class="folds">
+      <div class="fold fold--1">
+        <div class="fold fold--2">
+          <div class="fold fold--3">
+            <div class="fold fold--4">
+              <div class="pull-tab">Under the hood</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-secondary">
+    <p>&copy; 2016 Gina Liao.</p>
+
+    <ul class="social-list">
+      <li class="social-item">
+        <a href="https://twitter.com/itsginarrr" class="social-link"><div class="icon icon--twitter" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="https://nz.linkedin.com/in/ginaliao" class="social-link"><div class="icon icon--linkedin" data-grunticon-embed></div></a>
+      </li>
+      <li class="social-item">
+        <a href="/contact" class="social-link js-modal-open"><div class="icon icon--mail" data-grunticon-embed></div></a>
+      </li>
+    </ul>
+  </div>
+</footer>
+    </div>
+  </body>
+
+</html>

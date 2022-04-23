@@ -1,0 +1,14 @@
+<ul class="post-list">
+  {% for post in include.collection limit:include.max %}
+    <li class="post-item">
+      <h2 class="post-title">
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
+      </h2>
+
+      <span class="post-meta">
+        <a href="{{ "/category/" }}" class="post-category">{{ post.category }}</a> &raquo; <span class="post-date">{{ post.date | readablePostDate }}</span>
+      </span>
+    </li>
+  {% endfor %}
+</ul>
+
